@@ -16,7 +16,27 @@ interface AXI_AW_CH
     logic   [2:0]               awsize;     // [master] burst size. brust내 데이터 전송의 크기를 지정 
     logic   [1:0]               awburst;    // [master] 버스트 유형을 지정. (fixed, increment, wrap)
 
+    modport master (
+        output awvalid,
+        input  awready,
+        output [ID_WIDTH-1:0] awid,
+        output [ADDR_WIDTH-1:0] awaddr,
+        output [3:0] awlen,
+        output [2:0] awsize,
+        output [1:0] awburst
+    );
+
+    modport slave (
+        input  awvalid,
+        output awready,
+        input  [ID_WIDTH-1:0] awid,
+        input  [ADDR_WIDTH-1:0] awaddr,
+        input  [3:0] awlen,
+        input  [2:0] awsize,
+        input  [1:0] awburst
+    );
 endinterface
+
 
 interface AXI_W_CH
 #(
@@ -33,7 +53,25 @@ interface AXI_W_CH
     logic   [DATA_WIDTH/8-1:0]  wstrb;      // [master] byte enable 각 8bit마다 하나의 write strobe bit 있음. 
     logic                       wlast;      // [master] wirte burst에서 마지막 전송임을 나타냄. 
 
+    modport master (
+        output wvalid,
+        input  wready,
+        output [ID_WIDTH-1:0] wid,
+        output [DATA_WIDTH-1:0] wdata,
+        output [DATA_WIDTH/8-1:0] wstrb,
+        output wlast
+    );
+
+    modport slave (
+        input  wvalid,
+        output wready,
+        input  [ID_WIDTH-1:0] wid,
+        input  [DATA_WIDTH-1:0] wdata,
+        input  [DATA_WIDTH/8-1:0] wstrb,
+        input  wlast
+    );
 endinterface
+
 
 interface AXI_B_CH
 #(
@@ -65,7 +103,27 @@ interface AXI_AR_CH
     logic   [2:0]               arsize;     // [master] brust 내 각 전송의 크기
     logic   [1:0]               arburst;    // [master] burt type 정보 
 
+    modport master (
+        output arvalid,
+        input  arready,
+        output [ID_WIDTH-1:0] arid,
+        output [ADDR_WIDTH-1:0] araddr,
+        output [3:0] arlen,
+        output [2:0] arsize,
+        output [1:0] arburst
+    );
+
+    modport slave (
+        input  arvalid,
+        output arready,
+        input  [ID_WIDTH-1:0] arid,
+        input  [ADDR_WIDTH-1:0] araddr,
+        input  [3:0] arlen,
+        input  [2:0] arsize,
+        input  [1:0] arburst
+    );
 endinterface
+
 
 interface AXI_R_CH
 #(
