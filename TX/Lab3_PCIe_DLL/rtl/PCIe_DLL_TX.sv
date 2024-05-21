@@ -9,12 +9,12 @@ module PCIE_DLL_TX
     
     // Transaction Layer Interface
     input  wire                     tlp_valid_i,
-    input  wire [223:0]             tlp_i,
+    input  wire [PCIe_PKG::PCIe_TL_TLP_PACKET_SIZE-1:0]     tlp_i,
     output logic                    tlp_ready_o,
 
     // Physical Layer Interface 
     output logic                    tlp_valid_o,
-    output logic [267:0]            tlp_o,  // 224 bits for TLP + 12 bits for sequence number + 32 bits for CRC
+    output logic [PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:0] tlp_o,  // 224 bits for TLP + 12 bits for sequence number + 32 bits for CRC
     input  wire                     tlp_ready_i,
 
     // DLLP from RX Interface

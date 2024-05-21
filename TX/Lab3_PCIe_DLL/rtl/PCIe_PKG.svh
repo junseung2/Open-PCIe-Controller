@@ -1,4 +1,7 @@
 package PCIe_PKG;
+
+    localparam  int     PCIe_TL_TLP_PACKET_SIZE     = 224;  
+    localparam  int     PCIe_DLL_TLP_PACKET_SIZE    = 268;  
    
     typedef struct packed {
         logic [1:0]             ph;             // [95:94]
