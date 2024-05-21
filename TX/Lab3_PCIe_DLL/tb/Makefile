@@ -1,14 +1,14 @@
-# Makefile for UVM Lab4
+# Makefile for UVM (PCIe Data Link Layer)
 LD_LIBRARY_PATH = /media/2/LogicLibraries
 
-test = cmss_cxl_tx_pack_test
+test = pcie_dll_test
 program_path = .
 PROGRAM_TOP = ${program_path}/testbench.sv
 package_path = ./packages
-PACKAGES = ${package_path}/cxl_stimulus_pkg.sv ${package_path}/cxl_env_pkg.sv ${package_path}/cxl_test_pkg.sv
+PACKAGES = ${package_path}/pcie_dll_stimulus_pkg.sv ${package_path}/pcie_dll_env_pkg.sv ${package_path}/pcie_dll_test_pkg.sv
 TEST_TOP = ${PACKAGES} ${PROGRAM_TOP}
 rtl_path = ../rtl
-DUT = $(rtl_path)/CXL_PKG.svh $(rtl_path)/CPI_PKG.svh $(rtl_path)/CMSS_CXL_TX_PACK.sv $(rtl_path)/cxl_if.sv
+DUT = $(rtl_path)/PCIe_PKG.svh $(rtl_path)/PCIe_CRC.sv $(rtl_path)/PCIe_DLL_TX.sv $(rtl_path)/pcie_dll_if.sv
 # HARNESS_TOP = $(rtl_path)/router_test_top.sv
 TOP = ${TEST_TOP}
 
@@ -33,18 +33,6 @@ cmd = cxl.cmd
 
 all: simv run
 
-# simv compile: *.sv ${DUT} ${TOP}
-# ifeq ($(CES64),TRUE)
-# 	vcs -full64 ${compile_switches}
-# 	@echo "Compiled in 64-bit mode"
-# else
-# 	vcs -full64 ${compile_switches}
-# 	@echo "Compiled in 32-bit mode"
-# endif
-
-# simv compile: *.sv ${DUT} ${TOP}
-# 	vcs -full64 ${compile_switches}
-# 	@echo "Compiled in 32-bit mode"
 
 simv compile: *.sv ${DUT} ${TOP}
 	vcs -full64 ${compile_switches} -lca -debug_access+all 
@@ -80,83 +68,8 @@ verdi_tr:
 verdi_i: simv
 	./simv -gui=verdi +ntb_random_seed=$(seed) ${runtime_switches} +UVM_VERDI_TRACE &
 
-solution: nuke
-	cp ../../solutions/lab4/*.sv .
-	cp -r ../../solutions/lab4/packages .
-	cp -r ../../solutions/lab4/debug_files .
-	rm -rf packages/router_env_pkg.sv.orig
-
-original: copy
-
-copy: nuke
-	cp ../../solutions/lab3/*.sv .
-	cp ../../solutions/lab4/iMonitor.sv.orig iMonitor.sv
-	cp ../../solutions/lab4/input_agent.sv.orig input_agent.sv
-	cp ../../solutions/lab4/router_env.sv.orig router_env.sv
-	cp ../../solutions/lab4/scoreboard.sv.orig scoreboard.sv
-	cp ../../solutions/lab4/test_collection.sv.orig test_collection.sv
-	cp ../../solutions/lab4/output_agent.sv .
-	cp ../../solutions/lab4/ms_scoreboard.sv .
-	cp ../../solutions/lab4/oMonitor.sv .
-	cp -r ../../solutions/lab4/packages .
-	cp -r ../../solutions/lab4/debug_files .
-	cp ../../solutions/lab4/packages/router_env_pkg.sv.orig packages/router_env_pkg.sv
-	rm -rf packages/router_env_pkg.sv.orig
-
-mycopy: nuke
-	cp ../lab3/*.sv .
-	cp ../../solutions/lab4/iMonitor.sv.orig iMonitor.sv
-	cp ../../solutions/lab4/input_agent.sv.orig input_agent.sv
-	cp ../../solutions/lab4/router_env.sv.orig router_env.sv
-	cp ../../solutions/lab4/scoreboard.sv.orig scoreboard.sv
-	cp ../../solutions/lab4/test_collection.sv.orig test_collection.sv
-	cp ../../solutions/lab4/output_agent.sv .
-	cp ../../solutions/lab4/ms_scoreboard.sv .
-	cp ../../solutions/lab4/oMonitor.sv .
-	cp -r ../../solutions/lab4/packages .
-	cp -r ../../solutions/lab4/debug_files .
-	cp ../../solutions/lab4/packages/router_env_pkg.sv.orig packages/router_env_pkg.sv
-	rm -rf packages/router_env_pkg.sv.orig
-
 clean:
 	rm -rf simv* csrc* *.tmp *.vpd *.key log *.h temp *.log .vcs* *.txt DVE* *.hvp urg* .inter.vpd.uvm .restart* .synopsys* novas.* *.dat *.fsdb verdi* work* vlog*
 
 nuke: clean
 	rm -rf *.sv *.tcl packages debug_files
-
-help:
-	@echo =======================================================================
-	@echo  " 								       "
-	@echo  " USAGE: make target <seed=xxx> <verbosity=YYY> <test=ZZZ>              "
-	@echo  " 								       "
-	@echo  "  xxx is the random seed.  Can be any integer except 0. Defaults to 1  "
-	@echo  "  YYY sets the verbosity filter.  Defaults to UVM_MEDIUM               "
-	@echo  "  ZZZ selects the uvm test.       Defaults to test_base                "
-	@echo  " 								       "
-	@echo  " ------------------------- Test TARGETS ------------------------------ "
-	@echo  " all             => Compile TB and DUT files and run the simulation    "
-	@echo  " uvm-1.1         => Compile TB and DUT files and run the simulation    "
-	@echo  " uvm-1.2         => Compile TB and DUT files and run the simulation    "
-	@echo  " compile         => Compile TB and DUT files                           "
-	@echo  " run             => Run the simulation with seed                       "
-	@echo  " random          => Run the simulation with random seed                "
-	@echo  " dve             => Run DVE with preset waveform displayed             "
-	@echo  " dve_tr          => Run DVE with transaction displayed                 "
-	@echo  " dve_i           => Run simulation interactively with DVE              "
-	@echo  " verdi           => Run verdi with preset waveform displayed           "
-	@echo  " verdi_tr        => Run verdi with transaction recording enabled       "
-	@echo  " verdi_i         => Run simulation interactively with verdi            "
-	@echo  "                                                                       "
-	@echo  " -------------------- ADMINISTRATIVE TARGETS ------------------------- "
-	@echo  " help       => Displays this message                                   "
-	@echo  " clean      => Remove all intermediate simv and log files              "
-	@echo  " nuke       => Remove all source code and debug files                  "
-	@echo  " original   => Return content of lab back to original state            "
-	@echo  " copy       => Copy files from previous lab's solution directory       "
-	@echo  " mycopy     => Copy files from user's previous lab directory           "
-	@echo  " solution   => Copy files from solutions directory for lab             "
-	@echo  "								       "
-	@echo  " ---------------------- EMBEDDED SETTINGS -----------------------------"
-	@echo  " -timescale=\"1ns/100ps\"                                              "
-	@echo  " -debug_all                                                            "
-	@echo =======================================================================
