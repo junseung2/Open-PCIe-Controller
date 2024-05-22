@@ -4,8 +4,8 @@ class pcie_dll_agent extends uvm_agent;
     virtual pcie_dll_if                             vif;
 
     // UVM agent components
-    pcie_driver                                     driver;
-    pcie_monitor                                    monitor;
+    pcie_dll_driver                                 driver;
+    pcie_dll_monitor                                monitor;
     uvm_sequencer #(pcie_dll_transaction)           sequencer;
 
     // Analysis port for broadcasting transactions to other components
@@ -37,10 +37,10 @@ class pcie_dll_agent extends uvm_agent;
         // Instantiate components based on the mode
         if (is_active) begin
             sequencer = uvm_sequencer#(pcie_dll_transaction)::type_id::create("sequencer", this);
-            driver = pcie_driver::type_id::create("driver", this);
+            driver = pcie_dll_driver::type_id::create("driver", this);
         end
         
-        monitor = pcie_monitor::type_id::create("monitor", this);
+        monitor = pcie_dll_monitor::type_id::create("monitor", this);
     endfunction: build_phase
 
     // Connect phase

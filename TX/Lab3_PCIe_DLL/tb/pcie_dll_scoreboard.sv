@@ -18,15 +18,16 @@ class pcie_dll_scoreboard extends uvm_scoreboard;
     // Write method: Receives transactions from the monitor and compares them
     virtual function void write(pcie_dll_transaction txn);
         // Implement comparison logic here
-        `uvm_info(get_type_name(), $sformatf(
-            "Received Transaction: tlp_valid_o = %0d, tlp_o = %0h, tlp_ready_o = %0d",
-            txn.tlp_valid_o, txn.tlp_o, txn.tlp_ready_o), UVM_MEDIUM)
+        
+        // `uvm_info(get_type_name(), $sformatf(
+        //     "Received Transaction: tlp_valid_o = %0d, tlp_o = %0h, tlp_ready_o = %0d",
+        //     txn.tlp_valid_o, txn.tlp_o, txn.tlp_ready_o), UVM_MEDIUM)
 
-        // Example comparison logic (replace with actual expected results)
-        if (/* some condition based on expected values */) begin
-            `uvm_error(get_type_name(), "Mismatch detected in transaction")
-        end else begin
-            `uvm_info(get_type_name(), "Transaction matches expected values", UVM_HIGH)
-        end
+        // // Example comparison logic (replace with actual expected results)
+        // if (/* some condition based on expected values */) begin
+        //     `uvm_error(get_type_name(), "Mismatch detected in transaction")
+        // end else begin
+        //     `uvm_info(get_type_name(), "Transaction matches expected values", UVM_HIGH)
+        // end
     endfunction: write
 endclass

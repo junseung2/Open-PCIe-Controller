@@ -14,7 +14,7 @@ TOP = ${TEST_TOP}
 
 log = simv.log
 verbosity = UVM_MEDIUM
-uvm_ver = uvm-1.2
+uvm_ver = ../uvm-1.2
 seed = 1
 defines =
 uvm_defines = UVM_VERDI_COMPWAVE+UVM_NO_DEPRECATED+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR
@@ -44,22 +44,8 @@ run:
 random: simv
 	./simv +ntb_random_seed_automatic ${runtime_switches}
 
-# dve:
-# 	dve -vpd vcdplus.vpd -session debug_files/$(tcl) &
-
-# dve_tr:
-# 	./simv +ntb_random_seed=$(seed) ${runtime_switches}
-# 	dve -vpd vcdplus.vpd -session debug_files/$(tr) &
-
-dve_i: simv
-	./simv -gui=dve +ntb_random_seed=$(seed) ${runtime_switches} &
-
 verdi:
 	verdi -play debug_files/${cmd} &
-
-# verdi_tr:
-# 	./simv +ntb_random_seed=$(seed) ${runtime_switches} +UVM_VERDI_TRACE
-# 	verdi -play debug_files/${cmd} -nologo & 
 
 verdi_tr:
 	./simv +ntb_random_seed=$(seed) ${runtime_switches} +UVM_TR_RECORD +UVM_LOG_RECORD +UVM_VERDI_TRACE

@@ -15,7 +15,7 @@ module top;
     // Reset generation
     initial begin
         rst_n = 1'b0; // active low reset
-        repeat (2) @(posedge clk); // after 2 clock cycles
+        repeat (1) @(posedge clk); // after 1 clock cycles
         rst_n = 1'b1; // release the reset
     end
 
@@ -33,7 +33,8 @@ module top;
         .tlp_o(intf.tlp_o),
         .tlp_ready_i(intf.tlp_ready_i),
         .dllp_in(intf.dllp_in),
-        .dllp_valid_i(intf.dllp_valid_i)
+        .dllp_valid_i(intf.dllp_valid_i),
+        .tlp_blocking_i(intf.tlp_blocking_i)
     );
 
     // UVM configuration and test start

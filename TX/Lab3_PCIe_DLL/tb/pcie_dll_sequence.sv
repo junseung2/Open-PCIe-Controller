@@ -10,11 +10,20 @@ class pcie_dll_sequence extends uvm_sequence #(pcie_dll_transaction);
     // Main task: Generates and sends a series of transactions
     virtual task body();
         pcie_dll_transaction txn;
+        int seq_num;
+
+         #(10);
+
+
+        // Get seq_num from configuration database
+        if (!uvm_config_db#(int)::get(null, "env", "seq_num", seq_num)) begin
+            `uvm_error("SEQ_NUM_NOT_FOUND", "seq_num not found in configuration database");
+        end
 
         // Loop to create and send 5 transactions
-        for (int i = 0; i < 5; i++) begin
+        for (int i = 0; i < 10; i++) begin
             // Create a new transaction object
-            txn = pcie_dll_transaction::type_id::create("txn", this);
+            txn = pcie_dll_transaction::type_id::create("txn");
             
             // Start the transaction
             start_item(txn);

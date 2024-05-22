@@ -22,6 +22,7 @@ class pcie_dll_monitor extends uvm_monitor;
 
     // Run phase: Main task to monitor DUT outputs
     virtual task run_phase(uvm_phase phase);
+        #(10);
         forever begin
             pcie_dll_transaction txn;
             txn = pcie_dll_transaction::type_id::create("txn", this);
@@ -39,7 +40,7 @@ class pcie_dll_monitor extends uvm_monitor;
 
             // Optionally log the transaction
             `uvm_info(get_type_name(), $sformatf(
-                "Observed Transaction: tlp_valid_o = %0d, tlp_o = %0h, tlp_ready_o = %0d",
+                "Observed Transaction\n: tlp_valid_o = %0d\n, tlp_o = %0h\n, tlp_ready_o = %0d\n",
                 txn.tlp_valid_o, txn.tlp_o, txn.tlp_ready_o), UVM_MEDIUM)
         end
     endtask: run_phase

@@ -8,5 +8,6 @@ interface pcie_dll_if(input wire clk);
   logic                             tlp_ready_i;
   PCIe_PKG::dllp_packet             dllp_in;
   logic                             dllp_valid_i;
+  logic                             tlp_blocking_i;
 
 endinterface
