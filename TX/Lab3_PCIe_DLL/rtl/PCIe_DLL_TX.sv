@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Company: Sungkyunkwan University
 // Author:  Junseung Lee 
-// E-mail:  junseung0728#naver.com
+// E-mail:  junseung0728@naver.com
 
 // Project Name: Simple PCIe Controller 
 // Design Name:  PCIe Data Link Layer
