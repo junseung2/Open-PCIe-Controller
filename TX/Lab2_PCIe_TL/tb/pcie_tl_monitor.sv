@@ -23,17 +23,17 @@ class pcie_tl_monitor extends uvm_monitor;
     // Run phase: Main task to monitor DUT outputs
     virtual task run_phase(uvm_phase phase);
         // super.run_phase(phase);
-        #(10);
+        #(100);
 
         forever begin
             pcie_tl_transaction txn ;
             txn = pcie_tl_transaction::type_id::create("txn",this);
-            @(posedge vif.clk);
 
             // Capture DUT outputs
             txn.tlp_valid     = vif.tlp_valid_o;
             txn.tlp           = vif.tlp_o;
 
+            // if(txn.tlp_vali)
             // Send the transaction to the analysis port
             ap.write(txn);
 
@@ -41,6 +41,8 @@ class pcie_tl_monitor extends uvm_monitor;
             `uvm_info(get_type_name(), $sformatf(
                 "Observed Transaction\n: tlp_valid_o = %0d\n, tlp_o = %0h\n",
                 txn.tlp_valid, txn.tlp), UVM_MEDIUM)
+            
+            @(posedge vif.clk);
         end
 
     endtask: run_phase

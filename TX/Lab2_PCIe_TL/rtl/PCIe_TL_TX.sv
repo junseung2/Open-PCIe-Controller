@@ -71,10 +71,10 @@ module PCIE_TL_TX
         if (w_ch.wvalid && aw_ch.awvalid && fc_valid_i) begin
             // TLP Header creation based on inputs
             tlp_header_n    = tlp_hdr_arr_i;
-            tlp_data_n      = (tlp_header.fmt == 3'b000) ? 128'd0 : w_ch.wdata; // Check for read or write request
+            // tlp_data_n      = (tlp_header.fmt == 3'b000) ? 128'd0 : w_ch.wdata; // Check for read or write request
 
             // Combine header and data into one TLP packet
-            tlp_n           = {tlp_header, tlp_data};
+            tlp_n           = {tlp_header, (tlp_header.fmt == 3'b000) ? 128'd0 : w_ch.wdata};
             tlp_valid_n     = 1'b1;
 
             // Write to appropriate FIFO based on TC value
