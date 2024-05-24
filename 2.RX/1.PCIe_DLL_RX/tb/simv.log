@@ -1,0 +1,189 @@
+Command: /home/dlwnstmd2021/UVM/4.PCIe_Controller_UVM/2.RX/1.PCIe_DLL_RX/tb/./simv +ntb_random_seed=1 -l simv.log +UVM_TESTNAME=pcie_dll_test +UVM_VERBOSITY=UVM_MEDIUM + + +UVM_VERDI_TRACE=UVM_AWARE+RAL+TLM+IMP+HIER +UVM_VERDI_TRACE=COMPWAVE +UVM_TR_RECORD +UVM_LOG_RECORD
+Chronologic VCS simulator copyright 1991-2020
+Contains Synopsys proprietary information.
+Compiler version R-2020.12-SP1-1_Full64; Runtime version R-2020.12-SP1-1_Full64;  May 24 20:14 2024
+UVM_INFO /usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/base/uvm_root.svh(402) @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2.Synopsys
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+*Verdi* Enable Verdi Message Catcher.
+*Verdi* Loading libsscore_vcs202012.so
+FSDB Dumper for VCS, Release Verdi_R-2020.12-SP1-1, Linux x86_64/64bit, 04/20/2021
+(C) 1996 - 2021 by Synopsys, Inc.
+*Verdi* : Create FSDB file 'novas.fsdb'
+*Verdi* : Begin dumping the Class Object by file (/usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/verdi/component.config).
+*Verdi* : End of class object dumping.
+UVM_INFO /usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/verdi/uvm_custom_install_verdi_recorder.sv(283) @ 0: reporter [VERDI_TR_AUTO] +UVM_TR_RECORD implicitly enables recording_details to UVM_FULL for all components. For explicit control use +UVM_DISABLE_AUTO_COMPONENT and set recording_detail on components accordingly
+*Verdi* Enable Verdi Factory Dumping.
+UVM_INFO @ 0: reporter [RNTST] Running test pcie_dll_test...
+*Verdi* Enable Verdi Recorder.
+Info: Verdi UVM 1.2 Hooks File 06/17/2014 
+UVM_ERROR pcie_dll_sequence.sv(20) @ 100: uvm_test_top.env.agent.sequencer@@seq [SEQ_NUM_NOT_FOUND] seq_num not found in configuration database
+UVM_INFO pcie_dll_sequence.sv(37) @ 100: uvm_test_top.env.agent.sequencer@@seq [pcie_dll_sequence] Transaction 0:
+  tlp_valid_i = 1
+  tlp_i = 2bd9f2b22e30ea6dafdacfdf0ae6392c2680b9b83c5c5651fcda59777d580fe158
+  tlp_ready_i = 1
+
+UVM_INFO pcie_dll_monitor.sv(45) @ 300: uvm_test_top.env.agent.monitor [pcie_dll_monitor] Observed Transaction
+: tlp_ready_o = 1
+, tlp_valid_o = 0
+, tlp_o = 0
+, dllp_o = 268435499
+, dllp_fc_o = 0
+
+UVM_INFO pcie_dll_sequence.sv(37) @ 300: uvm_test_top.env.agent.sequencer@@seq [pcie_dll_sequence] Transaction 1:
+  tlp_valid_i = 1
+  tlp_i = 4893d5c9d21b8afa46cd34b1c2594ad8e1ce3862c7bd94a7012151c8082202bbdfb
+  tlp_ready_i = 1
+
+UVM_INFO pcie_dll_monitor.sv(45) @ 500: uvm_test_top.env.agent.monitor [pcie_dll_monitor] Observed Transaction
+: tlp_ready_o = 1
+, tlp_valid_o = 0
+, tlp_o = 0
+, dllp_o = 268436617
+, dllp_fc_o = 1
+
+UVM_INFO pcie_dll_sequence.sv(37) @ 500: uvm_test_top.env.agent.sequencer@@seq [pcie_dll_sequence] Transaction 2:
+  tlp_valid_i = 1
+  tlp_i = 18647ebaf7ea3bf10398892c3e8ceae5cb7b9f628f2f3698addb1a9bc601f7de3d4
+  tlp_ready_i = 1
+
+UVM_INFO pcie_dll_monitor.sv(45) @ 700: uvm_test_top.env.agent.monitor [pcie_dll_monitor] Observed Transaction
+: tlp_ready_o = 1
+, tlp_valid_o = 0
+, tlp_o = 0
+, dllp_o = 268435846
+, dllp_fc_o = 2
+
+UVM_INFO pcie_dll_sequence.sv(37) @ 700: uvm_test_top.env.agent.sequencer@@seq [pcie_dll_sequence] Transaction 3:
+  tlp_valid_i = 1
+  tlp_i = c66b4cfeb6931a92bdb0ae4347a885ec5bb7ad63ee1b1a956def72f4f4c1e9d7c5f
+  tlp_ready_i = 1
+
+UVM_INFO pcie_dll_monitor.sv(45) @ 900: uvm_test_top.env.agent.monitor [pcie_dll_monitor] Observed Transaction
+: tlp_ready_o = 1
+, tlp_valid_o = 0
+, tlp_o = 0
+, dllp_o = 268438630
+, dllp_fc_o = 3
+
+UVM_INFO pcie_dll_sequence.sv(37) @ 900: uvm_test_top.env.agent.sequencer@@seq [pcie_dll_sequence] Transaction 4:
+  tlp_valid_i = 1
+  tlp_i = 9ab3361ec4f6ae09feb83452fcaf2adec36f81d6c62de90f55003cac9262d06b0ca
+  tlp_ready_i = 1
+
+UVM_INFO pcie_dll_monitor.sv(45) @ 1100: uvm_test_top.env.agent.monitor [pcie_dll_monitor] Observed Transaction
+: tlp_ready_o = 1
+, tlp_valid_o = 0
+, tlp_o = 0
+, dllp_o = 268437931
+, dllp_fc_o = 4
+
+UVM_INFO pcie_dll_sequence.sv(37) @ 1100: uvm_test_top.env.agent.sequencer@@seq [pcie_dll_sequence] Transaction 5:
+  tlp_valid_i = 1
+  tlp_i = 4b17a49bd1f2607df52fa1bf4bf2fffb7017ef2ee43ba0e4916be8c8faa4370fbd2
+  tlp_ready_i = 1
+
+UVM_INFO pcie_dll_monitor.sv(45) @ 1300: uvm_test_top.env.agent.monitor [pcie_dll_monitor] Observed Transaction
+: tlp_ready_o = 1
+, tlp_valid_o = 0
+, tlp_o = 0
+, dllp_o = 268436657
+, dllp_fc_o = 5
+
+UVM_INFO pcie_dll_sequence.sv(37) @ 1300: uvm_test_top.env.agent.sequencer@@seq [pcie_dll_sequence] Transaction 6:
+  tlp_valid_i = 1
+  tlp_i = 1259a10e67679f94916a63fd052273f72d73967801a61b847dfdb2ef53b6df4ab27
+  tlp_ready_i = 1
+
+UVM_INFO pcie_dll_monitor.sv(45) @ 1500: uvm_test_top.env.agent.monitor [pcie_dll_monitor] Observed Transaction
+: tlp_ready_o = 1
+, tlp_valid_o = 0
+, tlp_o = 0
+, dllp_o = 268435749
+, dllp_fc_o = 6
+
+UVM_INFO pcie_dll_sequence.sv(37) @ 1500: uvm_test_top.env.agent.sequencer@@seq [pcie_dll_sequence] Transaction 7:
+  tlp_valid_i = 1
+  tlp_i = cf14e62cb708a055204a8cb2f9ca96c2c1ab44c781899805591a383ea361941996c
+  tlp_ready_i = 1
+
+UVM_INFO pcie_dll_monitor.sv(45) @ 1700: uvm_test_top.env.agent.monitor [pcie_dll_monitor] Observed Transaction
+: tlp_ready_o = 1
+, tlp_valid_o = 0
+, tlp_o = 0
+, dllp_o = 268438769
+, dllp_fc_o = 7
+
+UVM_INFO pcie_dll_sequence.sv(37) @ 1700: uvm_test_top.env.agent.sequencer@@seq [pcie_dll_sequence] Transaction 8:
+  tlp_valid_i = 1
+  tlp_i = ceee103d41f4c468c67d3edf47dab4c64b8ce1e35a4a99ead0eab98132fe79fbff4
+  tlp_ready_i = 1
+
+UVM_INFO pcie_dll_monitor.sv(45) @ 1900: uvm_test_top.env.agent.monitor [pcie_dll_monitor] Observed Transaction
+: tlp_ready_o = 1
+, tlp_valid_o = 0
+, tlp_o = 0
+, dllp_o = 268438766
+, dllp_fc_o = 8
+
+UVM_INFO pcie_dll_sequence.sv(37) @ 1900: uvm_test_top.env.agent.sequencer@@seq [pcie_dll_sequence] Transaction 9:
+  tlp_valid_i = 1
+  tlp_i = 565845610377e070ccb603127ef091ab19493489df45aa833d0e2bca5f561850e53
+  tlp_ready_i = 1
+
+UVM_INFO pcie_dll_monitor.sv(45) @ 2100: uvm_test_top.env.agent.monitor [pcie_dll_monitor] Observed Transaction
+: tlp_ready_o = 1
+, tlp_valid_o = 0
+, tlp_o = 0
+, dllp_o = 268436837
+, dllp_fc_o = 9
+
+UVM_INFO /usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/base/uvm_report_catcher.svh(705) @ 2100: reporter [UVM/REPORT/CATCHER] 
+--- UVM Report catcher Summary ---
+
+
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+
+UVM_INFO /usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/base/uvm_report_server.svh(901) @ 2100: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   24
+UVM_WARNING :    0
+UVM_ERROR :    1
+UVM_FATAL :    0
+** Report counts by id
+[RNTST]     1
+[SEQ_NUM_NOT_FOUND]     1
+[UVM/RELNOTES]     1
+[UVM/REPORT/CATCHER]     1
+[VERDI_TR_AUTO]     1
+[pcie_dll_monitor]    10
+[pcie_dll_sequence]    10
+
+$finish called from file "/usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/base/uvm_root.svh", line 527.
+$finish at simulation time                 2100
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 210000 ps
+CPU Time:      0.880 seconds;       Data structure size:   0.6Mb
+Fri May 24 20:14:32 2024

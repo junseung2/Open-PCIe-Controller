@@ -30,9 +30,9 @@ module PCIE_DLL_RX
 
     logic                                                   crc_valid;
 
-    // CRC32 검사기 인스턴스
+    // CRC32 checker instance
     crc32_checker crc_chk (
-        .data_i(tlp_i[PCIe_DLL_TLP_PACKET_SIZE-1:32]),
+        .data_i(tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-13:32]),
         .crc_i(tlp_i[31:0]),
         .crc_valid_o(crc_valid)
     );
@@ -61,7 +61,7 @@ module PCIE_DLL_RX
         fc_empty_n                      = fc_empty;
         fc_full_n                       = fc_full;
 
-        dllp_fc_o                       = {PCIe_DLLP_PACKET_SIZE{1'b0}};
+        dllp_fc_o                       = {PCIe_PKG::PCIe_DLLP_PACKET_SIZE{1'b0}};
 
         // Write pointer update logic
         if (tlp_valid_i && tlp_ready_o) begin
@@ -101,22 +101,22 @@ module PCIE_DLL_RX
     always_comb begin
         tlp_ready_o         = 1'b1;
         tlp_valid_o         = 1'b0;
-        tlp_o               = {PCIe_TL_TLP_PACKET_SIZE{1'b0}};
-        dllp_o              = {PCIe_DLLP_PACKET_SIZE{1'b0}};
+        tlp_o               = {PCIe_PKG::PCIe_TL_TLP_PACKET_SIZE{1'b0}};
+        dllp_o              = {PCIe_PKG::PCIe_DLLP_PACKET_SIZE{1'b0}};
 
         if(tlp_valid_i && tlp_ready_o) begin
             if(crc_valid) begin
                 tlp_valid_o         = 1'b1;
-                tlp_o               = tlp_i[PCIe_DLL_TLP_PACKET_SIZE-1:32];
+                tlp_o               = tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:32];
 
                 // Ack DLLP
                 dllp_o.ack_or_nak   = 8'h00; 
-                dllp_o.seq_num      = tlp_i[PCIe_DLL_TLP_PACKET_SIZE-1:268];
+                dllp_o.seq_num      = tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:256];
             end
             else begin
                 // Nak DLLP
                 dllp_o.ack_or_nak   = 8'h10;
-                dllp_o.seq_num      = tlp_i[PCIe_DLL_TLP_PACKET_SIZE-1:268];
+                dllp_o.seq_num      = tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:256];
             end
         end
     end
