@@ -245,8 +245,8 @@ argv[9]=+UVM_VERDI_TRACE=COMPWAVE
 argv[10]=+UVM_TR_RECORD
 argv[11]=+UVM_LOG_RECORD
 246 profile - 100
-          CPU/Mem usage: 0.050 sys,  0.390 user,  314.37M mem
-247 Elapsed time:    0:00:00    Fri May 24 15:08:11 2024
+          CPU/Mem usage: 0.070 sys,  0.420 user,  314.36M mem
+247 Elapsed time:    0:00:00    Fri May 24 15:15:37 2024
 248 pliAppInit
 249 [SC]Init: MemoryConsumed=0.00MB ElapsedTime=0hour 0min. 0sec.
 250 FSDB_GATE is set.
@@ -270,7 +270,7 @@ argv[11]=+UVM_LOG_RECORD
 268 pliEntry_fsdbDumpClassObject_singletask at 0
 269 argv[0]: *uvm_pkg*.uvm_component
 270 pliAppDumpClassObject_Begin: profile - 
-          CPU/Mem usage: 0.050 sys,  0.400 user,  397.70M mem
+          CPU/Mem usage: 0.080 sys,  0.430 user,  397.71M mem
                    incr: 0.000 sys,  0.000 user,  0.00M mem
                    accu: 0.000 sys,  0.000 user,  0.00M mem
               accu incr: 0.000 sys,  0.000 user,  0.00M mem
@@ -279,22 +279,22 @@ argv[11]=+UVM_LOG_RECORD
                  incr: 0 var,  0 idcode,  0 callback
                  accu: 0 var,  0 idcode,  0 callback
             accu incr: 0 var,  0 idcode,  0 callback
-271 Elapsed time:    0:00:00    Fri May 24 15:08:11 2024
+271 Elapsed time:    0:00:00    Fri May 24 15:15:37 2024
 272 pliAppDumpClassObject_End: profile - 
-          CPU/Mem usage: 0.060 sys,  0.520 user,  426.09M mem
-                   incr: 0.010 sys,  0.120 user,  28.39M mem
-                   accu: 0.010 sys,  0.120 user,  28.39M mem
-              accu incr: 0.010 sys,  0.120 user,  28.39M mem
+          CPU/Mem usage: 0.090 sys,  0.560 user,  426.09M mem
+                   incr: 0.010 sys,  0.130 user,  28.38M mem
+                   accu: 0.010 sys,  0.130 user,  28.38M mem
+              accu incr: 0.010 sys,  0.130 user,  28.38M mem
 
           Count usage: 26 var,  65 idcode,  0 callback
                  incr: 26 var,  65 idcode,  0 callback
                  accu: 26 var,  65 idcode,  0 callback
             accu incr: 26 var,  65 idcode,  0 callback
-273 Elapsed time:    0:00:01    Fri May 24 15:08:12 2024
+273 Elapsed time:    0:00:00    Fri May 24 15:15:37 2024
 274 pliEntry_fsdbDumpClassObject_singletask at 0
 275 argv[0]: *uvm_port_base*
 276 pliAppDumpClassObject_Begin: profile - 
-          CPU/Mem usage: 0.060 sys,  0.520 user,  426.09M mem
+          CPU/Mem usage: 0.090 sys,  0.560 user,  426.09M mem
                    incr: 0.000 sys,  0.000 user,  0.00M mem
                    accu: 0.000 sys,  0.000 user,  0.00M mem
               accu incr: 0.000 sys,  0.000 user,  0.00M mem
@@ -303,9 +303,9 @@ argv[11]=+UVM_LOG_RECORD
                  incr: 0 var,  0 idcode,  0 callback
                  accu: 0 var,  0 idcode,  0 callback
             accu incr: 0 var,  0 idcode,  0 callback
-277 Elapsed time:    0:00:01    Fri May 24 15:08:12 2024
+277 Elapsed time:    0:00:00    Fri May 24 15:15:37 2024
 278 pliAppDumpClassObject_End: profile - 
-          CPU/Mem usage: 0.060 sys,  0.520 user,  426.09M mem
+          CPU/Mem usage: 0.090 sys,  0.560 user,  426.09M mem
                    incr: 0.000 sys,  0.000 user,  0.00M mem
                    accu: 0.000 sys,  0.000 user,  0.00M mem
               accu incr: 0.000 sys,  0.000 user,  0.00M mem
@@ -314,25 +314,25 @@ argv[11]=+UVM_LOG_RECORD
                  incr: 0 var,  0 idcode,  0 callback
                  accu: 0 var,  0 idcode,  0 callback
             accu incr: 0 var,  0 idcode,  0 callback
-279 Elapsed time:    0:00:01    Fri May 24 15:08:12 2024
+279 Elapsed time:    0:00:00    Fri May 24 15:15:37 2024
 280 *Verdi* : End of class object dumping.
 281 End of simulation at 2100
-282 Memory usage: 435.433 M
-283 Elapsed time:    0:00:01    Fri May 24 15:08:12 2024
+282 Memory usage: 435.425 M
+283 Elapsed time:    0:00:01    Fri May 24 15:15:38 2024
 284 Begin FSDB profile info:
 285 FSDB Writer : bc1(92) bcn(3584) mtf/stf(0/0)
-FSDB Writer elapsed time : flush(0.021521) io wait(0.000000) theadpool wait(0.000000)
+FSDB Writer elapsed time : flush(0.024778) io wait(0.000000) theadpool wait(0.000000)
 FSDB Writer cpu time : MT Compression : 0
 286 End FSDB profile info
-287 FSDB closed. Name: novas.fsdb Size: 46495
+287 FSDB closed. Name: novas.fsdb Size: 46501
 288 Parallel profile     - ProducerThread:1 ConsumerThread:1 Buffer:64MB
-289                      - BlockUsed:1 Acquire:4135 BufferUsed:132345
+289                      - BlockUsed:1 Acquire:4135 BufferUsed:132348
 290                      - Flush:4 Expand:0 ProducerWait:0 ConsumerWait:0
-291                      - MainProducerTime:0.729587560 TotalConsumerTime:0.000000000
-292                      - ElapsedTime:0.671154000
-293 Producer   0 profile - BlockUsed:1 Acquire:4135 BufferUsed:132345
+291                      - MainProducerTime:0.825386973 TotalConsumerTime:0.000000000
+292                      - ElapsedTime:0.721889000
+293 Producer   0 profile - BlockUsed:1 Acquire:4135 BufferUsed:132348
 294 Consumer   0 profile - Affinity:-1 CPUTime:0.000000000 LifeTime:0.000000000 (-nan%)
-295                      - BlockUsed:1 Acquire:4135 BufferUsed:132345
+295                      - BlockUsed:1 Acquire:4135 BufferUsed:132348
 296 SimExit
-297 Elapsed time:    0:00:01    Fri May 24 15:08:12 2024
+297 Elapsed time:    0:00:01    Fri May 24 15:15:38 2024
 298 Sim process exit

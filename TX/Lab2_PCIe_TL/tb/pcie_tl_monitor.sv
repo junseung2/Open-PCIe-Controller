@@ -23,8 +23,7 @@ class pcie_tl_monitor extends uvm_monitor;
     // Run phase: Main task to monitor DUT outputs
     virtual task run_phase(uvm_phase phase);
         // super.run_phase(phase);
-        #(100);
-
+        #(10);
         forever begin
             pcie_tl_transaction txn ;
             txn = pcie_tl_transaction::type_id::create("txn",this);

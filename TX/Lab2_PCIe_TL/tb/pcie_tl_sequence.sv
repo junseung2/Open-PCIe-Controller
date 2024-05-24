@@ -10,10 +10,9 @@ class pcie_tl_sequence extends uvm_sequence #(pcie_tl_transaction);
     // Main task: Generates and sends a series of transactions
     virtual task body();
         pcie_tl_transaction txn;
-        // #(10);
+        #(10);
 
         // Small delay before starting the sequence
-        #(10);
 
         // Loop to create and send transactions
         for (int i = 0; i < 10; i++) begin
