@@ -1,4 +1,6 @@
-`include "../TB/AXI_TYPEDEF.svh"
+`define AXI_ADDR_WIDTH          32
+`define AXI_DATA_WIDTH          128
+`define AXI_ID_WIDTH            4
 
 interface AXI_AW_CH
 #(
@@ -13,30 +15,29 @@ interface AXI_AW_CH
     logic   [ID_WIDTH-1:0]      awid;       // [master] transaction ID 식별자. 
     logic   [ADDR_WIDTH-1:0]    awaddr;     // [master] write address
     logic   [3:0]               awlen;      // [master] burst length 
-    logic   [2:0]               awsize;     // [master] burst size. brust내 데이터 전송의 크기를 지정 
+    logic   [2:0]               awsize;     // [master] burst size. burst 내 데이터 전송의 크기를 지정 
     logic   [1:0]               awburst;    // [master] 버스트 유형을 지정. (fixed, increment, wrap)
 
     modport master (
         output awvalid,
         input  awready,
-        output [ID_WIDTH-1:0] awid,
-        output [ADDR_WIDTH-1:0] awaddr,
-        output [3:0] awlen,
-        output [2:0] awsize,
-        output [1:0] awburst
+        output awid,
+        output awaddr,
+        output awlen,
+        output awsize,
+        output awburst
     );
 
     modport slave (
         input  awvalid,
         output awready,
-        input  [ID_WIDTH-1:0] awid,
-        input  [ADDR_WIDTH-1:0] awaddr,
-        input  [3:0] awlen,
-        input  [2:0] awsize,
-        input  [1:0] awburst
+        input  awid,
+        input  awaddr,
+        input  awlen,
+        input  awsize,
+        input  awburst
     );
 endinterface
-
 
 interface AXI_W_CH
 #(
@@ -51,27 +52,26 @@ interface AXI_W_CH
     logic   [ID_WIDTH-1:0]      wid;        // [master] Response ID tag(AXI3에서만 지원)
     logic   [DATA_WIDTH-1:0]    wdata;      // [master] write할 실제 data 
     logic   [DATA_WIDTH/8-1:0]  wstrb;      // [master] byte enable 각 8bit마다 하나의 write strobe bit 있음. 
-    logic                       wlast;      // [master] wirte burst에서 마지막 전송임을 나타냄. 
+    logic                       wlast;      // [master] write burst에서 마지막 전송임을 나타냄. 
 
     modport master (
         output wvalid,
         input  wready,
-        output [ID_WIDTH-1:0] wid,
-        output [DATA_WIDTH-1:0] wdata,
-        output [DATA_WIDTH/8-1:0] wstrb,
+        output wid,
+        output wdata,
+        output wstrb,
         output wlast
     );
 
     modport slave (
         input  wvalid,
         output wready,
-        input  [ID_WIDTH-1:0] wid,
-        input  [DATA_WIDTH-1:0] wdata,
-        input  [DATA_WIDTH/8-1:0] wstrb,
+        input  wid,
+        input  wdata,
+        input  wstrb,
         input  wlast
     );
 endinterface
-
 
 interface AXI_B_CH
 #(
@@ -85,6 +85,19 @@ interface AXI_B_CH
     logic   [ID_WIDTH-1:0]      bid;        // [slave] response ID tag
     logic   [1:0]               bresp;      // [slave] response 상태 (e.g., transaction이 성공적인지 실패인지 등을 나타냄)
 
+    modport master (
+        input  bvalid,
+        output bready,
+        input  bid,
+        input  bresp
+    );
+
+    modport slave (
+        output bvalid,
+        input  bready,
+        output bid,
+        output bresp
+    );
 endinterface
 
 interface AXI_AR_CH
@@ -99,31 +112,30 @@ interface AXI_AR_CH
     logic                       arready;    // [slave]
     logic   [ID_WIDTH-1:0]      arid;       // [master] read address ID tag
     logic   [ADDR_WIDTH-1:0]    araddr;     // [master] read할 address 값
-    logic   [3:0]               arlen;      // [master] brust length
-    logic   [2:0]               arsize;     // [master] brust 내 각 전송의 크기
-    logic   [1:0]               arburst;    // [master] burt type 정보 
+    logic   [3:0]               arlen;      // [master] burst length
+    logic   [2:0]               arsize;     // [master] burst 내 각 전송의 크기
+    logic   [1:0]               arburst;    // [master] burst type 정보 
 
     modport master (
         output arvalid,
         input  arready,
-        output [ID_WIDTH-1:0] arid,
-        output [ADDR_WIDTH-1:0] araddr,
-        output [3:0] arlen,
-        output [2:0] arsize,
-        output [1:0] arburst
+        output arid,
+        output araddr,
+        output arlen,
+        output arsize,
+        output arburst
     );
 
     modport slave (
         input  arvalid,
         output arready,
-        input  [ID_WIDTH-1:0] arid,
-        input  [ADDR_WIDTH-1:0] araddr,
-        input  [3:0] arlen,
-        input  [2:0] arsize,
-        input  [1:0] arburst
+        input  arid,
+        input  araddr,
+        input  arlen,
+        input  arsize,
+        input  arburst
     );
 endinterface
-
 
 interface AXI_R_CH
 #(
@@ -137,9 +149,26 @@ interface AXI_R_CH
     logic                       rready;     // [master]
     logic   [ID_WIDTH-1:0]      rid;        // [slave]     
     logic   [DATA_WIDTH-1:0]    rdata;      // [slave] read한 실제 data 값 
-    logic   [1:0]               rresp;      // [slave] read전송의 상태 
+    logic   [1:0]               rresp;      // [slave] read 전송의 상태 
     logic                       rlast;      // [slave] read burst에서 마지막 전송임을 나타냄. 
 
+    modport master (
+        input  rvalid,
+        output rready,
+        input  rid,
+        input  rdata,
+        input  rresp,
+        input  rlast
+    );
+
+    modport slave (
+        output rvalid,
+        input  rready,
+        output rid,
+        output rdata,
+        output rresp,
+        output rlast
+    );
 endinterface
 
 interface APB (

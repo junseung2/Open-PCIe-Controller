@@ -17,6 +17,7 @@ module PCIE_TL_TX
     output logic [PCIe_PKG::PCIe_TL_TLP_PACKET_SIZE-1:0]    tlp_o,          // TLP data output
     input  wire                                             tlp_ready_i     // TLP ready input signal
 );
+    import PCIe_PKG::*;
 
     // Internal signals (TLP Header & TLP Data)
     logic [PCIe_PKG::PCIe_DATA_PAYLOAD_SIZE:0]          tlp_data, tlp_data_n;         // TLP data and next TLP data
@@ -39,34 +40,38 @@ module PCIE_TL_TX
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             tlp_data        <= 128'd0;
-            tlp_header      <= '0;
-            tlp             <= '0;
+            tlp_header      <= 96'd0;
+            tlp             <= 224'd0;
             tlp_valid       <= 1'b0;
         end else begin
             tlp_data        <= tlp_data_n;
             tlp_header      <= tlp_header_n;
             tlp             <= tlp_n;
             tlp_valid       <= tlp_valid_n;
+
+            $display("TLP Header   : tlp_header = %0h", tlp_header);
+            $display("TLP Generated: tlp_valid = %0d, tlp = %0h", tlp_valid, tlp);
+            
         end
     end
 
     // Combinational logic for TLP packing and FIFO write enable
     always_comb begin
         // Default values
-        tlp_data_n          = tlp_data;
-        tlp_header_n        = tlp_header;
-        tlp_n               = tlp;
+        tlp_data_n          = 'd0;
+        tlp_header_n        = 'd0;
+        tlp_n               = 'd0;
         tlp_valid_n         = 1'b0;
         vc0_fifo_wren       = 1'b0;
         vc1_fifo_wren       = 1'b0;
 
-        aw_ch.ready         = 1'b1;
-        w_ch.ready          = 1'b1;
+        aw_ch.awready         = 1'b1;
+        w_ch.wready          = 1'b1;
 
-        if (w_ch.valid && aw_ch.valid && fc_valid_i) begin
+        if (w_ch.wvalid && aw_ch.awvalid && fc_valid_i) begin
             // TLP Header creation based on inputs
             tlp_header_n    = tlp_hdr_arr_i;
-            tlp_data_n      = w_ch.data;
+            tlp_data_n      = (tlp_header.fmt == 3'b000) ? 128'd0 : w_ch.wdata; // Check for read or write request
 
             // Combine header and data into one TLP packet
             tlp_n           = {tlp_header, tlp_data};

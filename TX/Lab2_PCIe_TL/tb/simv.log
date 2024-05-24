@@ -1,0 +1,197 @@
+Command: /home/dlwnstmd2021/UVM/4.PCIe_Controller_UVM/TX/Lab2_PCIe_TL/tb/./simv +ntb_random_seed=1 -l simv.log +UVM_TESTNAME=pcie_tl_test +UVM_VERBOSITY=UVM_MEDIUM + + +UVM_VERDI_TRACE=UVM_AWARE+RAL+TLM+IMP+HIER +UVM_VERDI_TRACE=COMPWAVE +UVM_TR_RECORD +UVM_LOG_RECORD
+Chronologic VCS simulator copyright 1991-2020
+Contains Synopsys proprietary information.
+Compiler version R-2020.12-SP1-1_Full64; Runtime version R-2020.12-SP1-1_Full64;  May 24 14:49 2024
+UVM_INFO /usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/base/uvm_root.svh(402) @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2.Synopsys
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+*Verdi* Enable Verdi Message Catcher.
+*Verdi* Loading libsscore_vcs202012.so
+FSDB Dumper for VCS, Release Verdi_R-2020.12-SP1-1, Linux x86_64/64bit, 04/20/2021
+(C) 1996 - 2021 by Synopsys, Inc.
+*Verdi* : Create FSDB file 'novas.fsdb'
+*Verdi* : Begin dumping the Class Object by file (/usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/verdi/component.config).
+*Verdi* : End of class object dumping.
+UVM_INFO /usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/verdi/uvm_custom_install_verdi_recorder.sv(283) @ 0: reporter [VERDI_TR_AUTO] +UVM_TR_RECORD implicitly enables recording_details to UVM_FULL for all components. For explicit control use +UVM_DISABLE_AUTO_COMPONENT and set recording_detail on components accordingly
+*Verdi* Enable Verdi Factory Dumping.
+UVM_INFO @ 0: reporter [RNTST] Running test pcie_tl_test...
+*Verdi* Enable Verdi Recorder.
+Info: Verdi UVM 1.2 Hooks File 06/17/2014 
+UVM_INFO pcie_tl_sequence.sv(32) @ 100: uvm_test_top.env.agent.sequencer@@seq [pcie_tl_sequence] Transaction 0:
+  fc_valid = 1
+  tlp_header = 3b85eac36f0c190b00ead666
+  awvalid = 1
+  wvalid = 1
+  wdata = 1037c7d7a50a0d14b43bac8af7e45100
+  tlp_ready = 1
+UVM_INFO pcie_tl_monitor.sv(41) @ 300: uvm_test_top.env.agent.monitor [pcie_tl_monitor] Observed Transaction
+: tlp_valid_o = 0
+, tlp_o = 0
+
+TLP Header   : tlp_header = 0
+TLP Generated: tlp_valid = 0, tlp = 0
+UVM_INFO pcie_tl_sequence.sv(32) @ 300: uvm_test_top.env.agent.sequencer@@seq [pcie_tl_sequence] Transaction 1:
+  fc_valid = 1
+  tlp_header = 49933537e52b8d66001e794e
+  awvalid = 1
+  wvalid = 1
+  wdata = 12067587cf90e4ce42ea78504dca19ba
+  tlp_ready = 1
+UVM_INFO pcie_tl_monitor.sv(41) @ 500: uvm_test_top.env.agent.monitor [pcie_tl_monitor] Observed Transaction
+: tlp_valid_o = 1
+, tlp_o = 0
+
+TLP Header   : tlp_header = 3b85eac36f0c190b00ead666
+TLP Generated: tlp_valid = 1, tlp = 0
+UVM_INFO pcie_tl_sequence.sv(32) @ 500: uvm_test_top.env.agent.sequencer@@seq [pcie_tl_sequence] Transaction 2:
+  fc_valid = 1
+  tlp_header = b5982c9ba27ecc1040e0852a
+  awvalid = 1
+  wvalid = 1
+  wdata = 118fbb05621fdbec1a0d48248a11c4e2
+  tlp_ready = 1
+UVM_INFO pcie_tl_monitor.sv(41) @ 700: uvm_test_top.env.agent.monitor [pcie_tl_monitor] Observed Transaction
+: tlp_valid_o = 1
+, tlp_o = 0
+
+TLP Header   : tlp_header = 49933537e52b8d66001e794e
+TLP Generated: tlp_valid = 1, tlp = 770bd586de18321601d5accc00000000000000000000000000000000
+UVM_INFO pcie_tl_sequence.sv(32) @ 700: uvm_test_top.env.agent.sequencer@@seq [pcie_tl_sequence] Transaction 3:
+  fc_valid = 1
+  tlp_header = 1af80df9084c354940165281
+  awvalid = 1
+  wvalid = 1
+  wdata = a08c84da7a4ab8d2401bf790b5796b47
+  tlp_ready = 1
+UVM_INFO pcie_tl_monitor.sv(41) @ 900: uvm_test_top.env.agent.monitor [pcie_tl_monitor] Observed Transaction
+: tlp_valid_o = 1
+, tlp_o = 770bd586de18321601d5accc00000000000000000000000000000000
+
+TLP Header   : tlp_header = b5982c9ba27ecc1040e0852a
+TLP Generated: tlp_valid = 1, tlp = 93266a6fca571acc003cf29c00000000000000000000000000000000
+UVM_INFO pcie_tl_sequence.sv(32) @ 900: uvm_test_top.env.agent.sequencer@@seq [pcie_tl_sequence] Transaction 4:
+  fc_valid = 1
+  tlp_header = c552fa458905835a002b33da
+  awvalid = 1
+  wvalid = 1
+  wdata = 9a2bcf324f6c406b99d59fc1993a34a5
+  tlp_ready = 1
+UVM_INFO pcie_tl_monitor.sv(41) @ 1100: uvm_test_top.env.agent.monitor [pcie_tl_monitor] Observed Transaction
+: tlp_valid_o = 1
+, tlp_o = 93266a6fca571acc003cf29c00000000000000000000000000000000
+
+TLP Header   : tlp_header = 1af80df9084c354940165281
+TLP Generated: tlp_valid = 1, tlp = 6b30593744fd982081c10a5400000000000000000000000000000000
+UVM_INFO pcie_tl_sequence.sv(32) @ 1100: uvm_test_top.env.agent.sequencer@@seq [pcie_tl_sequence] Transaction 5:
+  fc_valid = 1
+  tlp_header = 2b795df9fa94f33a408c713b
+  awvalid = 1
+  wvalid = 1
+  wdata = 3bdad137d910422e805353a16f212c9c
+  tlp_ready = 1
+UVM_INFO pcie_tl_monitor.sv(41) @ 1300: uvm_test_top.env.agent.monitor [pcie_tl_monitor] Observed Transaction
+: tlp_valid_o = 1
+, tlp_o = 6b30593744fd982081c10a5400000000000000000000000000000000
+
+TLP Header   : tlp_header = c552fa458905835a002b33da
+TLP Generated: tlp_valid = 1, tlp = 35f01bf210986a92802ca502a08c84da7a4ab8d2401bf790b5796b47
+UVM_INFO pcie_tl_sequence.sv(32) @ 1300: uvm_test_top.env.agent.sequencer@@seq [pcie_tl_sequence] Transaction 6:
+  fc_valid = 1
+  tlp_header = 2093c4ab4e21ce1c40e72e5d
+  awvalid = 1
+  wvalid = 1
+  wdata = edc49aa9c1d725da6ce236cb5e6e6543
+  tlp_ready = 1
+UVM_INFO pcie_tl_monitor.sv(41) @ 1500: uvm_test_top.env.agent.monitor [pcie_tl_monitor] Observed Transaction
+: tlp_valid_o = 1
+, tlp_o = 35f01bf210986a92802ca502a08c84da7a4ab8d2401bf790b5796b47
+
+TLP Header   : tlp_header = 2b795df9fa94f33a408c713b
+TLP Generated: tlp_valid = 1, tlp = 8aa5f48b120b06b4005667b49a2bcf324f6c406b99d59fc1993a34a5
+UVM_INFO pcie_tl_sequence.sv(32) @ 1500: uvm_test_top.env.agent.sequencer@@seq [pcie_tl_sequence] Transaction 7:
+  fc_valid = 1
+  tlp_header = cee893895d02945a40d140b1
+  awvalid = 1
+  wvalid = 1
+  wdata = f7fb5e61db1d8aece6649cb37e99a05e
+  tlp_ready = 1
+UVM_INFO pcie_tl_monitor.sv(41) @ 1700: uvm_test_top.env.agent.monitor [pcie_tl_monitor] Observed Transaction
+: tlp_valid_o = 1
+, tlp_o = 8aa5f48b120b06b4005667b49a2bcf324f6c406b99d59fc1993a34a5
+
+TLP Header   : tlp_header = 2093c4ab4e21ce1c40e72e5d
+TLP Generated: tlp_valid = 1, tlp = 56f2bbf3f529e6748118e27600000000000000000000000000000000
+UVM_INFO pcie_tl_sequence.sv(32) @ 1700: uvm_test_top.env.agent.sequencer@@seq [pcie_tl_sequence] Transaction 8:
+  fc_valid = 1
+  tlp_header = e820dcb419a72994408cd50c
+  awvalid = 1
+  wvalid = 1
+  wdata = 9c05eba1fbf7ce93a6b23f3bd5860f67
+  tlp_ready = 1
+UVM_INFO pcie_tl_monitor.sv(41) @ 1900: uvm_test_top.env.agent.monitor [pcie_tl_monitor] Observed Transaction
+: tlp_valid_o = 1
+, tlp_o = 56f2bbf3f529e6748118e27600000000000000000000000000000000
+
+TLP Header   : tlp_header = cee893895d02945a40d140b1
+TLP Generated: tlp_valid = 1, tlp = 412789569c439c3881ce5cbaedc49aa9c1d725da6ce236cb5e6e6543
+UVM_INFO pcie_tl_sequence.sv(32) @ 1900: uvm_test_top.env.agent.sequencer@@seq [pcie_tl_sequence] Transaction 9:
+  fc_valid = 1
+  tlp_header = 82a80f4122bb99f840f290f4
+  awvalid = 1
+  wvalid = 1
+  wdata = e9db18d4862afda12f6676a7eb2472a8
+  tlp_ready = 1
+UVM_INFO pcie_tl_monitor.sv(41) @ 2100: uvm_test_top.env.agent.monitor [pcie_tl_monitor] Observed Transaction
+: tlp_valid_o = 1
+, tlp_o = 412789569c439c3881ce5cbaedc49aa9c1d725da6ce236cb5e6e6543
+
+TLP Header   : tlp_header = e820dcb419a72994408cd50c
+TLP Generated: tlp_valid = 1, tlp = 9dd12712ba0528b481a28162f7fb5e61db1d8aece6649cb37e99a05e
+UVM_INFO /usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/base/uvm_report_catcher.svh(705) @ 2100: reporter [UVM/REPORT/CATCHER] 
+--- UVM Report catcher Summary ---
+
+
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+
+UVM_INFO /usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/base/uvm_report_server.svh(901) @ 2100: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   24
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[RNTST]     1
+[UVM/RELNOTES]     1
+[UVM/REPORT/CATCHER]     1
+[VERDI_TR_AUTO]     1
+[pcie_tl_monitor]    10
+[pcie_tl_sequence]    10
+
+$finish called from file "/usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/base/uvm_root.svh", line 527.
+$finish at simulation time                 2100
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 210000 ps
+CPU Time:      0.750 seconds;       Data structure size:   0.6Mb
+Fri May 24 14:49:49 2024
