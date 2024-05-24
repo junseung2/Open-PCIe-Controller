@@ -27,6 +27,7 @@ module PCIE_DLL_RX
     logic [11:0]                                            wr_ptr_n, rd_ptr_n;     // Next state for write and read pointers
     logic                                                   fc_empty_n, fc_full_n;  // Next state for retry buffer flags
 
+    logic [11:0]                                            expected_seq_num, expected_seq_num_n;
 
     logic                                                   crc_valid;
 
@@ -47,12 +48,20 @@ module PCIE_DLL_RX
 
         if(tlp_valid_i && tlp_ready_o) begin
             if(crc_valid) begin
-                tlp_valid_o         = 1'b1;
-                tlp_o               = tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:32];
+                if(expected_seq_num == tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:256]) begin
+                    expected_seq_num_n  = expected_seq_num + '1; 
+                    tlp_valid_o         = 1'b1;
+                    tlp_o               = tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:32];
 
-                // Ack DLLP
-                dllp_o.ack_or_nak   = 8'h00; 
-                dllp_o.seq_num      = tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:256];
+                    // Ack DLLP
+                    dllp_o.ack_or_nak   = 8'h00; 
+                    dllp_o.seq_num      = tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:256];
+                end
+                else begin
+                    // Nak DLLP
+                    dllp_o.ack_or_nak   = 8'h10;
+                    dllp_o.seq_num      = tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:256];
+                end
             end
             else begin
                 // Nak DLLP
@@ -70,12 +79,14 @@ module PCIE_DLL_RX
             rd_ptr                      <= 12'd0;
             fc_empty                    <= 1'b1;
             fc_full                     <= 1'b0;
+            expected_seq_num            <= 12'd0;
         end else begin
             // Update write/read pointers, and buffer flags
             wr_ptr                      <= wr_ptr_n;
             rd_ptr                      <= rd_ptr_n;
             fc_empty                    <= fc_empty_n;
             fc_full                     <= fc_full_n;
+            expected_seq_num            <= expected_seq_num_n;
         end
     end
 

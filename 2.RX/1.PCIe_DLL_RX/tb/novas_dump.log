@@ -157,7 +157,7 @@ Limit information:
 cputime		unlimited
 filesize		unlimited
 datasize		unlimited
-stacksize		8200 kbytes
+stacksize		8250 kbytes
 coredumpsize		0 kbytes
 memoryuse		unlimited
 vmemoryuse		unlimited
@@ -243,8 +243,8 @@ argv[9]=+UVM_VERDI_TRACE=COMPWAVE
 argv[10]=+UVM_TR_RECORD
 argv[11]=+UVM_LOG_RECORD
 244 profile - 100
-          CPU/Mem usage: 0.050 sys,  0.460 user,  318.52M mem
-245 Elapsed time:    0:00:01    Fri May 24 20:30:03 2024
+          CPU/Mem usage: 0.050 sys,  0.580 user,  314.31M mem
+245 Elapsed time:    0:00:01    Fri May 24 20:41:47 2024
 246 pliAppInit
 247 [SC]Init: MemoryConsumed=0.00MB ElapsedTime=0hour 0min. 0sec.
 248 FSDB_GATE is set.
@@ -259,17 +259,16 @@ argv[11]=+UVM_LOG_RECORD
 257 (C) 1996 - 2021 by Synopsys, Inc.
 258 sps_call_fsdbDumpClassObjectByFile at 0 : /usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/verdi/uvm_verdi_pli.svh(580)
 259 argv[0]: (handle) uvm_custom_install_verdi_recording.\uvm_verdi_pli::dump_comp_object_by_file .st_file_name
-260 *Verdi* FSDB WARNING: The FSDB file already exists. Overwriting the FSDB file may crash the programs that are using this file.
-261 *Verdi* : Create FSDB file 'novas.fsdb'
-262 [spi_vcs_vd_ppi_create_root]: no upf option
-263 FSDB dumper cannot dump UPF related power signal ($power_tree): no ppiPowerNetwork.
-264 compile option from '/home/dlwnstmd2021/UVM/4.PCIe_Controller_UVM/2.RX/1.PCIe_DLL_RX/tb/simv.daidir/vcs_rebuild'.
-265   "vcs '-full64' '-sverilog' '-debug_access+all' '-timescale=1ns/100ps' '-kdb' '-LDFLAGS' '-Wl,--no-as-needed' '-ntb_opts' '../uvm-1.2' '../rtl/PCIe_PKG.svh' '../rtl/PCIe_CRC_check.sv' '../rtl/PCIe_DLL_RX.sv' '../rtl/pcie_dll_if.sv' './packages/pcie_dll_stimulus_pkg.sv' './packages/pcie_dll_env_pkg.sv' './packages/pcie_dll_test_pkg.sv' './testbench.sv' '+define+UVM_VERDI_COMPWAVE+UVM_NO_DEPRECATED+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR+' '-lca' '-debug_access+all' 2>&1"
-266 *Verdi* : Begin dumping the Class Object by file (/usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/verdi/component.config).
-267 pliEntry_fsdbDumpClassObject_singletask at 0
-268 argv[0]: *uvm_pkg*.uvm_component
-269 pliAppDumpClassObject_Begin: profile - 
-          CPU/Mem usage: 0.060 sys,  0.470 user,  401.85M mem
+260 *Verdi* : Create FSDB file 'novas.fsdb'
+261 [spi_vcs_vd_ppi_create_root]: no upf option
+262 FSDB dumper cannot dump UPF related power signal ($power_tree): no ppiPowerNetwork.
+263 compile option from '/home/dlwnstmd2021/UVM/4.PCIe_Controller_UVM/2.RX/1.PCIe_DLL_RX/tb/simv.daidir/vcs_rebuild'.
+264   "vcs '-full64' '-sverilog' '-debug_access+all' '-timescale=1ns/100ps' '-kdb' '-LDFLAGS' '-Wl,--no-as-needed' '-ntb_opts' '../uvm-1.2' '../rtl/PCIe_PKG.svh' '../rtl/PCIe_CRC_check.sv' '../rtl/PCIe_DLL_RX.sv' '../rtl/pcie_dll_if.sv' './packages/pcie_dll_stimulus_pkg.sv' './packages/pcie_dll_env_pkg.sv' './packages/pcie_dll_test_pkg.sv' './testbench.sv' '+define+UVM_VERDI_COMPWAVE+UVM_NO_DEPRECATED+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR+' '-lca' '-debug_access+all' 2>&1"
+265 *Verdi* : Begin dumping the Class Object by file (/usr/synopsys/vcs/R-2020.12-SP1-1/etc/uvm-1.2/verdi/component.config).
+266 pliEntry_fsdbDumpClassObject_singletask at 0
+267 argv[0]: *uvm_pkg*.uvm_component
+268 pliAppDumpClassObject_Begin: profile - 
+          CPU/Mem usage: 0.060 sys,  0.590 user,  397.64M mem
                    incr: 0.000 sys,  0.000 user,  0.00M mem
                    accu: 0.000 sys,  0.000 user,  0.00M mem
               accu incr: 0.000 sys,  0.000 user,  0.00M mem
@@ -278,22 +277,22 @@ argv[11]=+UVM_LOG_RECORD
                  incr: 0 var,  0 idcode,  0 callback
                  accu: 0 var,  0 idcode,  0 callback
             accu incr: 0 var,  0 idcode,  0 callback
-270 Elapsed time:    0:00:01    Fri May 24 20:30:03 2024
-271 pliAppDumpClassObject_End: profile - 
-          CPU/Mem usage: 0.070 sys,  0.630 user,  430.26M mem
-                   incr: 0.010 sys,  0.160 user,  28.41M mem
-                   accu: 0.010 sys,  0.160 user,  28.41M mem
-              accu incr: 0.010 sys,  0.160 user,  28.41M mem
+269 Elapsed time:    0:00:01    Fri May 24 20:41:47 2024
+270 pliAppDumpClassObject_End: profile - 
+          CPU/Mem usage: 0.080 sys,  0.750 user,  426.04M mem
+                   incr: 0.020 sys,  0.160 user,  28.40M mem
+                   accu: 0.020 sys,  0.160 user,  28.40M mem
+              accu incr: 0.020 sys,  0.160 user,  28.40M mem
 
           Count usage: 26 var,  65 idcode,  0 callback
                  incr: 26 var,  65 idcode,  0 callback
                  accu: 26 var,  65 idcode,  0 callback
             accu incr: 26 var,  65 idcode,  0 callback
-272 Elapsed time:    0:00:01    Fri May 24 20:30:03 2024
-273 pliEntry_fsdbDumpClassObject_singletask at 0
-274 argv[0]: *uvm_port_base*
-275 pliAppDumpClassObject_Begin: profile - 
-          CPU/Mem usage: 0.070 sys,  0.630 user,  430.26M mem
+271 Elapsed time:    0:00:01    Fri May 24 20:41:47 2024
+272 pliEntry_fsdbDumpClassObject_singletask at 0
+273 argv[0]: *uvm_port_base*
+274 pliAppDumpClassObject_Begin: profile - 
+          CPU/Mem usage: 0.080 sys,  0.750 user,  426.04M mem
                    incr: 0.000 sys,  0.000 user,  0.00M mem
                    accu: 0.000 sys,  0.000 user,  0.00M mem
               accu incr: 0.000 sys,  0.000 user,  0.00M mem
@@ -302,9 +301,9 @@ argv[11]=+UVM_LOG_RECORD
                  incr: 0 var,  0 idcode,  0 callback
                  accu: 0 var,  0 idcode,  0 callback
             accu incr: 0 var,  0 idcode,  0 callback
-276 Elapsed time:    0:00:01    Fri May 24 20:30:03 2024
-277 pliAppDumpClassObject_End: profile - 
-          CPU/Mem usage: 0.070 sys,  0.630 user,  430.26M mem
+275 Elapsed time:    0:00:01    Fri May 24 20:41:47 2024
+276 pliAppDumpClassObject_End: profile - 
+          CPU/Mem usage: 0.080 sys,  0.750 user,  426.04M mem
                    incr: 0.000 sys,  0.000 user,  0.00M mem
                    accu: 0.000 sys,  0.000 user,  0.00M mem
               accu incr: 0.000 sys,  0.000 user,  0.00M mem
@@ -313,25 +312,25 @@ argv[11]=+UVM_LOG_RECORD
                  incr: 0 var,  0 idcode,  0 callback
                  accu: 0 var,  0 idcode,  0 callback
             accu incr: 0 var,  0 idcode,  0 callback
-278 Elapsed time:    0:00:01    Fri May 24 20:30:03 2024
-279 *Verdi* : End of class object dumping.
-280 End of simulation at 2100
-281 Memory usage: 439.579 M
-282 Elapsed time:    0:00:02    Fri May 24 20:30:04 2024
-283 Begin FSDB profile info:
-284 FSDB Writer : bc1(92) bcn(3591) mtf/stf(0/0)
-FSDB Writer elapsed time : flush(0.022017) io wait(0.000000) theadpool wait(0.000000)
+277 Elapsed time:    0:00:01    Fri May 24 20:41:47 2024
+278 *Verdi* : End of class object dumping.
+279 End of simulation at 2100
+280 Memory usage: 435.364 M
+281 Elapsed time:    0:00:01    Fri May 24 20:41:47 2024
+282 Begin FSDB profile info:
+283 FSDB Writer : bc1(92) bcn(3591) mtf/stf(0/0)
+FSDB Writer elapsed time : flush(0.022275) io wait(0.000000) theadpool wait(0.000000)
 FSDB Writer cpu time : MT Compression : 0
-285 End FSDB profile info
-286 FSDB closed. Name: novas.fsdb Size: 46907
-287 Parallel profile     - ProducerThread:1 ConsumerThread:1 Buffer:64MB
-288                      - BlockUsed:1 Acquire:4147 BufferUsed:133921
-289                      - Flush:4 Expand:0 ProducerWait:0 ConsumerWait:0
-290                      - MainProducerTime:0.900031954 TotalConsumerTime:0.000000000
-291                      - ElapsedTime:0.752228000
-292 Producer   0 profile - BlockUsed:1 Acquire:4147 BufferUsed:133921
-293 Consumer   0 profile - Affinity:-1 CPUTime:0.000000000 LifeTime:0.000000000 (-nan%)
-294                      - BlockUsed:1 Acquire:4147 BufferUsed:133921
-295 SimExit
-296 Elapsed time:    0:00:02    Fri May 24 20:30:04 2024
-297 Sim process exit
+284 End FSDB profile info
+285 FSDB closed. Name: novas.fsdb Size: 46907
+286 Parallel profile     - ProducerThread:1 ConsumerThread:1 Buffer:64MB
+287                      - BlockUsed:1 Acquire:4147 BufferUsed:133921
+288                      - Flush:4 Expand:0 ProducerWait:0 ConsumerWait:0
+289                      - MainProducerTime:1.024451051 TotalConsumerTime:0.000000000
+290                      - ElapsedTime:0.786713000
+291 Producer   0 profile - BlockUsed:1 Acquire:4147 BufferUsed:133921
+292 Consumer   0 profile - Affinity:-1 CPUTime:0.000000000 LifeTime:0.000000000 (-nan%)
+293                      - BlockUsed:1 Acquire:4147 BufferUsed:133921
+294 SimExit
+295 Elapsed time:    0:00:02    Fri May 24 20:41:48 2024
+296 Sim process exit

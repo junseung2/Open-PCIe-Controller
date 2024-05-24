@@ -4,8 +4,6 @@
 
 The `PCIE_DLL_RX` module operates in the Data Link Layer of PCI Express, performing functions such as receiving data, CRC checking, flow control management, forwarding data to the Transaction Layer, and generating Ack/Nak DLLPs. This document describes the primary functions and internal operations of the module.
 
-![alt text](image.png)
-
 ## Port Description
 
 ### Input Ports
@@ -32,7 +30,7 @@ A CRC32 checker instance is used to verify the CRC of the TLP data. The data por
 
 ### TLP Handling Logic
 
-The module checks the validity of the received TLP. If valid, it forwards the TLP data to the Transaction Layer and generates an Ack DLLP. If a CRC error is detected, a Nak DLLP is generated instead. The module controls the ready and valid signals to synchronize data transfer between layers.
+The module checks the validity of the received TLP. If valid, it forwards the TLP data to the Transaction Layer and generates an Ack DLLP. If a CRC error is detected, a Nak DLLP is generated instead. Additionally, it checks the sequence number to ensure the TLPs are received in order.
 
 ### Flow Control Logic
 
@@ -50,4 +48,4 @@ The flow control logic manages write and read pointers to a buffer. It generates
 - **Flag Updates**: Determines if the buffer is empty or full by comparing the write and read pointers.
 - **DLLP Flow Control Packet Generation**: Creates a Flow Control DLLP based on the difference between the write and read pointers, indicating the buffer occupancy status.
 
-This module ensures that the Data Link Layer of PCI Express correctly handles TLP reception, CRC validation, flow control, and communication with both the Physical and Transaction Layers.
+This module ensures that the Data Link Layer of PCI Express correctly handles TLP reception, CRC validation, flow control, and communication with both the Physical and Transaction Layers. Additionally, it ensures that TLPs are received in the correct order by checking the sequence numbers.
