@@ -1,4 +1,8 @@
 package PCIe_PKG;
+
+    localparam  int     PCIe_DATA_PAYLOAD_SIZE      = 128;  
+    localparam  int     PCIe_TL_TLP_PACKET_SIZE     = 224;  
+    localparam  int     PCIe_DLL_TLP_PACKET_SIZE    = 268;  
    
     typedef struct packed {
         logic [1:0]             ph;             // [95:94]
@@ -8,7 +12,7 @@ package PCIe_PKG;
         logic [3:0]             last_dw_be;     // [39:36]
         logic [3:0]             first_dw_be;    // [35:32]
         logic [2:0]             fmt;            // [31:29]
-        logic [4:0]             type;           // [28:24]
+        logic [4:0]             type_;           // [28:24]
         logic                   t9;             // [23]
         logic [2:0]             tc;             // [22:20]                     
         logic                   t8;             // [19]
@@ -23,7 +27,7 @@ package PCIe_PKG;
     } tlp_memory_header;
 
     typedef struct packed {
-        logic [15:0]    crc16           // [47:32]
+        logic [15:0]    crc1;           // [47:32]
         logic [7:0]     ack_or_nak;     // [31:24]
         logic [11:0]    reserved;       // [23:12]
         logic [11:0]    seq_num;        // [11:0]

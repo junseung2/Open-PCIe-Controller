@@ -8,6 +8,7 @@ module PCIe_arbiter (
     input  wire [223:0]     vc1_rdata,
 
     input  wire             tlp_ready_i,
+    input  wire             fc_valid_i,     // Flow control valid input
 
     output reg              vc0_rden,
     output reg              vc1_rden,
@@ -32,7 +33,7 @@ module PCIe_arbiter (
         tlp_valid_o = 1'b0;
         tlp_o = 224'd0;
 
-        if (tlp_ready_i) begin
+        if (tlp_ready_i && fc_valid_i) begin
             if (arbiter_select) begin
                 if (!vc0_empty) begin
                     vc0_rden = 1'b1;
