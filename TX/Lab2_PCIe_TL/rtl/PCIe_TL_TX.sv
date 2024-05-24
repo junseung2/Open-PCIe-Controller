@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////////////
+// Company: Sungkyunkwan University
+// Author:  Junseung Lee 
+// E-mail:  junseung0728@naver.com
+
+// Project Name: Simple PCIe Controller 
+// Design Name:  PCIe Transaction Layer
+// Module Name:  PCIE_TL_TX
+//////////////////////////////////////////////////////////////////////////////////
+
 module PCIE_TL_TX
 (
     input  wire                             clk,            // Clock signal
