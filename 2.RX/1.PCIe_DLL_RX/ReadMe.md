@@ -4,6 +4,8 @@
 
 The `PCIE_DLL_RX` module operates in the Data Link Layer of PCI Express, performing functions such as receiving data, CRC checking, flow control management, forwarding data to the Transaction Layer, and generating Ack/Nak DLLPs. This document describes the primary functions and internal operations of the module.
 
+![alt text](image.png)
+
 ## Port Description
 
 ### Input Ports
