@@ -15,8 +15,12 @@ Korean)
 
 ![alt text](./images/image-2.png)
 
-<img src="./images/image-3.png" alt="alt text" width="300">
+<p align="center">
+  <img src="./images/image-3.png" alt="alt text" width="400">
+</p>
 
-<img src="./images/image-4.png" alt="alt text" width="300">
+<p align="center">
+  <img src="./images/image-4.png" alt="alt text" width="400">
+</p>
 
 ![alt text](./images/image-5.png)
