@@ -1,4 +1,4 @@
-# PCIe Controller with UVM
+# Simple PCIe Controller with UVM
 
 ## Author
 
