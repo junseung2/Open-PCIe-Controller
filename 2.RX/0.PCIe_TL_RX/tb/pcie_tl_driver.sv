@@ -37,25 +37,15 @@ class pcie_tl_driver extends uvm_driver #(pcie_tl_transaction);
 
     // Drive TLP transaction to the DUT
     task drive_tlp(pcie_tl_transaction tr);
-        // Drive the AXI write address channel
-        vif.aw_ch.awvalid   = tr.awvalid;
-        // @(posedge vif.clk);
-        // vif.aw_ch.awvalid   <= 1'b0;
-
-        // Drive the AXI write data channel
-        vif.w_ch.wvalid     = tr.wvalid;
-        vif.w_ch.wdata      = tr.wdata;
-        // @(posedge vif.clk);
-        // vif.w_ch.wvalid     <= 1'b0;
+        // Drive the AXI read address channel
+        vif.r_ch.rready     = tr.rready;
 
         // Drive the flow control 
         vif.fc_valid_i      = tr.fc_valid;
 
-        // Drive the TLP header
-        vif.tlp_hdr_arr_i   = tr.tlp_header;
-        vif.tlp_ready_i     = tr.tlp_ready;
-        // @(posedge vif.clk);
-        // vif.tlp_ready_i     <= 1'b0;
+        // Drive the TLP 
+        vif.tlp_i           = tr.tlp;
+        vif.tlp_valid_i     = tr.tlp_valid;
 
         @(posedge vif.clk);
     endtask

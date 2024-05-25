@@ -65,6 +65,7 @@ module PCIe_TL_RX
         tlp_header_n        = 'd0;
         vc0_fifo_wren       = 1'b0;
         vc1_fifo_wren       = 1'b0;
+        tlp_hdr_arr_o       = 96'd0;
 
         if (tlp_valid_i) begin
             // TLP Header extraction from input TLP
@@ -84,6 +85,9 @@ module PCIe_TL_RX
                 end
             end
         end
+
+        // Assign extracted TLP header to output
+        tlp_hdr_arr_o = tlp_header;
     end
 
     // Instantiate VC0 FIFO
@@ -125,10 +129,5 @@ module PCIe_TL_RX
         .tlp_valid_o(r_ch.rvalid),   // Use AXI read channel valid signal
         .tlp_o(r_ch.rdata)           // Use AXI read channel data signal
     );
-
-    // AXI Read Address Channel logic
-    always_comb begin
-        ar_ch.arready = 1'b1;
-    end
 
 endmodule

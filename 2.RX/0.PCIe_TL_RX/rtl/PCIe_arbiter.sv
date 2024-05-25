@@ -31,7 +31,7 @@ module PCIe_arbiter (
         vc0_rden = 1'b0;
         vc1_rden = 1'b0;
         tlp_valid_o = 1'b0;
-        tlp_o = 224'd0;
+        tlp_o = 128'd0;
 
         if (tlp_ready_i && fc_valid_i) begin
             if (arbiter_select) begin

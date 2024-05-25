@@ -1,0 +1,5 @@
+Command Line: /usr/synopsys/vcs/R-2020.12-SP1-1/linux64/bin/elabcom -logdir simv.daidir/elabcomLog -simvdaidir simv.daidir -lib simv.daidir/work -saveLevel -elab simv.daidir/kdb -simflow -simdir simv.daidir/kdb_libs -topfile simv.daidir/.elabcomTopFile -pkgfile simv.daidir/.elabcomPkgFile -ssv -ssy -Lf work +disable_message+C00380+C00381 +disable_message+C00388+C00389
+uname(Linux SALserver01 5.4.0-150-generic #167~18.04.1-Ubuntu SMP Wed May 24 00:51:42 UTC 2023 x86_64)
+[INFO] error/warning message 'C00388' has been suppressed.
+[INFO] error/warning message 'C00389' has been suppressed.
+au time 0.428560 0.370696 0.039392 delta 109281280 109281280 total 222040064 222040064

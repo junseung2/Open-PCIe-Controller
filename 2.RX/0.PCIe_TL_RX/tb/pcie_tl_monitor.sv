@@ -29,8 +29,8 @@ class pcie_tl_monitor extends uvm_monitor;
             txn = pcie_tl_transaction::type_id::create("txn",this);
 
             // Capture DUT outputs
-            txn.tlp_valid     = vif.tlp_valid_o;
-            txn.tlp           = vif.tlp_o;
+            txn.tlp_hdr_arr     = vif.tlp_hdr_arr_o;
+            txn.rdata      = vif.r_ch.rdata;
 
             // if(txn.tlp_vali)
             // Send the transaction to the analysis port
@@ -38,8 +38,8 @@ class pcie_tl_monitor extends uvm_monitor;
 
             // Optionally log the transaction
             `uvm_info(get_type_name(), $sformatf(
-                "Observed Transaction\n: tlp_valid_o = %0d\n, tlp_o = %0h\n",
-                txn.tlp_valid, txn.tlp), UVM_MEDIUM)
+                "Observed Transaction\n: tlp_hdr_arr = %0h\n, rdata = %0h\n",
+                txn.tlp_hdr_arr, txn.rdata), UVM_MEDIUM)
             
             @(posedge vif.clk);
         end

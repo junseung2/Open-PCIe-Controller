@@ -4,21 +4,18 @@ class pcie_tl_transaction extends uvm_sequence_item;
 
     // Randomizable fields for the transaction
     rand logic fc_valid; 
-    rand PCIe_PKG::tlp_memory_header tlp_header;  // TLP Header
     
-    // AXI Write Address Channel
-    rand logic awvalid;
-
+    rand logic tlp_valid;
+    rand logic [PCIe_PKG::PCIe_TL_TLP_PACKET_SIZE-1:0] tlp;
     // AXI Write Data Channel
-    rand logic wvalid;
-    rand logic [127:0] wdata;
+    rand logic rready;
 
-    // Data Link interface 
-    rand logic tlp_ready;
+    
+    logic rvalid;
+    logic [127:0] rdata;
+    logic tlp_ready;
+    PCIe_PKG::tlp_memory_header tlp_hdr_arr;
 
-    // Output fields (not randomized)
-    logic tlp_valid; 
-    logic [PCIe_PKG::PCIe_TL_TLP_PACKET_SIZE-1:0] tlp;
 
 
     // Constructor
@@ -26,27 +23,17 @@ class pcie_tl_transaction extends uvm_sequence_item;
         super.new(name);
     endfunction: new
 
-    // Constraints for tlp_header field
-    constraint tlp_header_c {
-        tlp_header.fmt inside {3'b000, 3'b010};
-        tlp_header.type_ == 5'b00000;
-    }
 
-    constraint tlp_ready_c{
-        tlp_ready == 1'b1;
-    }
-
-    constraint awvalid_c {
-        awvalid == 1;
-    }
-
-    constraint wvalid_c {
-        wvalid == 1;
+    constraint rready_c {
+        rready == 1;
     }
 
     constraint fc_valid_c {
         fc_valid == 1;
     }
 
+    constraint tlp_valid_c {
+        tlp_valid == 1;
+    }
 
 endclass

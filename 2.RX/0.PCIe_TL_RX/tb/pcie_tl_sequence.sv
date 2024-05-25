@@ -29,8 +29,8 @@ class pcie_tl_sequence extends uvm_sequence #(pcie_tl_transaction);
             end else begin
                 // Log transaction details if randomization is successful
                 `uvm_info(get_type_name(), $sformatf(
-                    "Transaction %0d:\n  fc_valid = %0d\n  tlp_header = %0h\n  awvalid = %0d\n  wvalid = %0d\n  wdata = %0h\n  tlp_ready = %0d",
-                    i, txn.fc_valid, txn.tlp_header, txn.awvalid, txn.wvalid, txn.wdata, txn.tlp_ready), UVM_MEDIUM)
+                    "Transaction %0d:\n  fc_valid = %0d\n  tlp_valid = %0d\n tlp = %0h\n rready = %0d",
+                    i, txn.fc_valid, txn.tlp_valid, txn.tlp, txn.rready), UVM_MEDIUM)
             end
             
             // Finish the transaction
