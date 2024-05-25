@@ -3,6 +3,7 @@
 ## Author
 
 - **Junseung Lee**
+- Department of Electrical and Computer Engineering, Sungkyunkwan University
 - junseung0728@naver.com
 
 ![PCIe Controller](./images/image.png)
