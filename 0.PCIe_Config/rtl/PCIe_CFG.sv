@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////////////
+// Company: Sungkyunkwan University
+// Author:  Junseung Lee 
+// E-mail:  junseung0728@naver.com
+
+// Project Name: Simple PCIe Controller 
+// Design Name:  PCIe Configuration
+// Module Name:  PCIe_CFG
+//////////////////////////////////////////////////////////////////////////////////
+
 module PCIe_CFG
 (
     input   wire                clk,
