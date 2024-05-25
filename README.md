@@ -2,7 +2,7 @@
 
 ## Author
 
-- Junseung Lee
+- `Junseung Lee`
 - junseung0728@naver.com
 
 ![alt text](image.png)
