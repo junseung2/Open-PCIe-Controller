@@ -58,7 +58,9 @@ These are DLLPs related to the ACK/NAK protocol and flow control.
 
 The following table is the register map corresponding to the PCIe Type 0 header. The Special PCIe Version IP is not included in the PCIe specification (it is a register added for the project).
 
-![PCIe Configuration](./images/image-5.png)
+<p align="center">
+  <img src="./images/image-5.png" alt="PCIe Config" width="500">
+</p>
 
 ---
 
