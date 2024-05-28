@@ -62,6 +62,12 @@ The following table is the register map corresponding to the PCIe Type 0 header.
 
 ---
 
+## Testbench
+
+<p align="center">
+  <img src="./images/test.png" alt="Testbench" width="500">
+</p>
+
 ## 한국어 버전
 
 ### 개요
