@@ -8,6 +8,8 @@
 
 ![PCIe Controller](./images/image.png)
 
+![alt text](image.png)
+
 In this project, the implemented PCIe controller can be broadly divided into the transmitter (Tx) and the receiver (Rx). Both the transmitter and receiver are composed of the transaction layer, data link layer, and physical layer.
 
 In the transmitter (Tx), a series of tasks are performed to send packets to the receiver (Rx). In the transaction layer, the TLP header and TLP data are packed and placed into one of the two FIFOs implemented as VCs. Then, through flow control, if there are enough credits in the receiver, the TLP is sent to the data link layer. In the data link layer, a sequence number and LCRC are generated and added to the front and back of the TLP. Additionally, to prepare for transmission errors, a copy of the generated TLP is stored in the retry buffer before the packet is sent to the physical layer. The TLP stored in the retry buffer is either removed or retransmitted depending on whether an ACK or NAK is received. In the physical layer, framing symbols are added to the front and back of the received TLP, and the final packet is sent to the receiver (Rx) through the PCIe link. During this process, the link state is controlled by the LTSSM state machine.
