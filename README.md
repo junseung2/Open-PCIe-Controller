@@ -6,7 +6,7 @@
 - Department of Electrical and Computer Engineering, Sungkyunkwan University
 - junseung0728@naver.com
 
-![PCIe Controller](./images/image.png)
+![Alt text](image.png)
 
 In this project, the implemented PCIe controller can be broadly divided into the transmitter (Tx) and the receiver (Rx). Both the transmitter and receiver are composed of the transaction layer, data link layer, and physical layer.
 
