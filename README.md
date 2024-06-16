@@ -14,7 +14,7 @@ In the transmitter (Tx), a series of tasks are performed to send packets to the 
 
 Conversely, in the receiver (Rx), a series of processes are carried out to unpack the received packet and check for packet errors through CRC verification.
 
-> **Note:** For convenience and to achieve the learning objectives, some logic does not fully adhere to PCIe specifications.(한국어 설명은 밑에 있습니다.)
+> **Note:** For convenience and to achieve the learning objectives, some logic does not fully adhere to PCIe specifications. (한국어 설명은 밑에 있습니다.)
 
 ---
 
