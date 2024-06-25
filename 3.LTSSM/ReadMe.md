@@ -1,3 +1,3 @@
 # LTSSM(Link Training and Status State Machine)
 
-![Alt text](LTSSM.png)
+![Alt text](image.png)
