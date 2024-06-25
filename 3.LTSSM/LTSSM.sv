@@ -34,45 +34,77 @@ module ltssm (
 
     // Define states
     typedef enum logic [10:0] {
-        DETECT_QUIET,            // Initial quiet state waiting for electrical idle to end
-        DETECT_ACTIVE,           // Active detection of receiver
-        POLLING_ACTIVE,          // Active polling to establish link parameters
-        POLLING_COMPLIANCE,      // Compliance mode during polling
-        POLLING_CONFIGURATION,   // Configuration mode during polling
-        CONFIG_LINKWIDTH_START,  // Start link width configuration
-        CONFIG_LINKWIDTH_ACCEPT, // Accept link width configuration
-        CONFIG_LANENUM_WAIT,     // Wait for lane number negotiation
-        CONFIG_LANENUM_ACCEPT,   // Accept lane number negotiation
-        CONFIG_COMPLETE,         // Complete configuration
-        CONFIG_IDLE,             // Idle configuration state before active
-        L0_ACTIVE,               // Active data transmission state
-        TX_L0S_ENTRY,            // Transmitter entering L0s state (low power)
-        TX_L0S_IDLE,             // Transmitter in L0s idle state
-        TX_L0S_FTS,              // Transmitter sending Fast Training Sequences (FTS)
-        RX_L0S_ENTRY,            // Receiver entering L0s state
-        RX_L0S_IDLE,             // Receiver in L0s idle state
-        RX_L0S_FTS,              // Receiver sending FTS
-        L1_ENTRY,                // Entry into L1 state (low power)
-        L1_IDLE,                 // Idle in L1 state
-        L2_IDLE,                 // Idle in L2 state (lowest power)
-        L2_TRANSMIT_WAKE,        // Transmit wake-up in L2 state
-        HOT_RESET,               // Hot reset state
-        DISABLED,                // Disabled state
-        LOOPBACK_ENTRY,          // Entry into loopback state
-        LOOPBACK_ACTIVE,         // Active loopback state
-        LOOPBACK_EXIT,           // Exit from loopback state
-        RECOVERY_RCVRLOCK,       // Recovery: receiver lock
-        RECOVERY_RCVRCFG,        // Recovery: receiver configuration
-        RECOVERY_EQUALIZATION_PHASE_0, // Recovery: equalization phase 0
-        RECOVERY_EQUALIZATION_PHASE_1, // Recovery: equalization phase 1
-        RECOVERY_EQUALIZATION_PHASE_2, // Recovery: equalization phase 2
-        RECOVERY_EQUALIZATION_PHASE_3, // Recovery: equalization phase 3
-        RECOVERY_SPEED,          // Recovery: speed change
-        RECOVERY_IDLE            // Recovery: idle state
+        // Detect State 
+        DETECT_QUIET,                   // Initial quiet state waiting for electrical idle to end
+        DETECT_ACTIVE,                  // Active detection of receiver
+
+        // Polling State
+        POLLING_ACTIVE,                 // Active polling to establish link parameters
+        POLLING_COMPLIANCE,             // Compliance mode during polling
+        POLLING_CONFIGURATION,          // Configuration mode during polling
+
+        // Config State
+        CONFIG_LINKWIDTH_START,         // Start link width configuration
+        CONFIG_LINKWIDTH_ACCEPT,        // Accept link width configuration
+        CONFIG_LANENUM_WAIT,            // Wait for lane number negotiation
+        CONFIG_LANENUM_ACCEPT,          // Accept lane number negotiation
+        CONFIG_COMPLETE,                // Complete configuration
+        CONFIG_IDLE,                    // Idle configuration state before active
+
+        // L0 State
+        L0_ACTIVE,                     // Active data transmission state
+
+        // Recovery State
+        RECOVERY_RCVRLOCK,              // Recovery: receiver lock
+        RECOVERY_RCVRCFG,               // Recovery: receiver configuration
+        RECOVERY_EQUALIZATION_PHASE_0,  // Recovery: equalization phase 0
+        RECOVERY_EQUALIZATION_PHASE_1,  // Recovery: equalization phase 1
+        RECOVERY_EQUALIZATION_PHASE_2,  // Recovery: equalization phase 2
+        RECOVERY_EQUALIZATION_PHASE_3,  // Recovery: equalization phase 3
+        RECOVERY_SPEED,                 // Recovery: speed change
+        RECOVERY_IDLE                   // Recovery: idle state
+
+        // L0s State (TX)
+        TX_L0S_ENTRY,                   // Transmitter entering L0s state (low power)
+        TX_L0S_IDLE,                    // Transmitter in L0s idle state
+        TX_L0S_FTS,                     // Transmitter sending Fast Training Sequences (FTS)
+
+        // L0s State (RX)
+        RX_L0S_ENTRY,                   // Receiver entering L0s state
+        RX_L0S_IDLE,                    // Receiver in L0s idle state
+        RX_L0S_FTS,                     // Receiver sending FTS
+
+        // L1 State 
+        L1_ENTRY,                       // Entry into L1 state (low power)
+        L1_IDLE,                        // Idle in L1 state
+        
+        // L2 State
+        L2_IDLE,                        // Idle in L2 state (lowest power)
+        L2_TRANSMIT_WAKE,               // Transmit wake-up in L2 state
+        
+        // Hot Reset State
+        HOT_RESET,                      // Hot reset state
+        
+        // Disabled State
+        DISABLED,                       // Disabled state
+        
+        // Loopback State
+        LOOPBACK_ENTRY,             // Entry into loopback state
+        LOOPBACK_ACTIVE,            // Active loopback state
+        LOOPBACK_EXIT,              // Exit from loopback state
     } ltssm_state_t;
 
     // State registers
     ltssm_state_t current_state, next_state;
+
+    // State transition logic
+    always_ff @(posedge clk or posedge reset) begin
+        if (reset) begin
+            current_state <= DETECT_QUIET; // Initialize to DETECT_QUIET on reset
+        end else begin
+            current_state <= next_state; // Transition to next state
+        end
+    end
 
     // Output logic
     always_comb begin
@@ -303,15 +335,6 @@ module ltssm (
         endcase
     end
 
-
-    // State transition logic
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
-            current_state <= DETECT_QUIET; // Initialize to DETECT_QUIET on reset
-        end else begin
-            current_state <= next_state; // Transition to next state
-        end
-    end
 
     // Output the current state for monitoring/debugging
     assign state = current_state;
