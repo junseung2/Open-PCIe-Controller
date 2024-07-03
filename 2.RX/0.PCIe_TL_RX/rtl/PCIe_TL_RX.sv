@@ -44,51 +44,14 @@ module PCIe_TL_RX
     logic [PCIe_PKG::PCIe_TL_TLP_PACKET_SIZE-1:0]       vc0_fifo_wdata;                   // VC0 FIFO write data
     logic [PCIe_PKG::PCIe_TL_TLP_PACKET_SIZE-1:0]       vc1_fifo_wdata;                   // VC1 FIFO write data
 
-    // Sequential logic for state and TLP data update
-    always_ff @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
-            tlp_data        <= 128'd0;
-            tlp_header      <= 96'd0;
-        end else begin
-            tlp_data        <= tlp_data_n;
-            tlp_header      <= tlp_header_n;
+    /* Fill the code here */
 
-            $display("TLP Header   : tlp_header = %0h", tlp_header);
-            $display("TLP Received: tlp_valid = %0d, tlp = %0h", tlp_valid_i, tlp_i);
-        end
-    end
 
-    // Combinational logic for TLP unpacking and FIFO write enable
-    always_comb begin
-        // Default values
-        tlp_data_n          = 'd0;
-        tlp_header_n        = 'd0;
-        vc0_fifo_wren       = 1'b0;
-        vc1_fifo_wren       = 1'b0;
-        tlp_hdr_arr_o       = 96'd0;
 
-        if (tlp_valid_i) begin
-            // TLP Header extraction from input TLP
-            tlp_header_n    = tlp_i[PCIe_TL_TLP_PACKET_SIZE-1:PCIe_TL_TLP_PACKET_SIZE-96];
-            tlp_data_n      = tlp_i[PCIe_DATA_PAYLOAD_SIZE-1:0];
 
-            // Write to appropriate FIFO based on TC value
-            if (tlp_header.tc[0] == 1'b0) begin
-                if (!vc0_fifo_full) begin
-                    vc0_fifo_wren   = 1'b1;
-                    vc0_fifo_wdata  = tlp_i;
-                end
-            end else begin
-                if (!vc1_fifo_full) begin
-                    vc1_fifo_wren   = 1'b1;
-                    vc1_fifo_wdata  = tlp_i;
-                end
-            end
-        end
 
-        // Assign extracted TLP header to output
-        tlp_hdr_arr_o = tlp_header;
-    end
+
+    
 
     // Instantiate VC0 FIFO
     PCIe_FIFO vc0 (

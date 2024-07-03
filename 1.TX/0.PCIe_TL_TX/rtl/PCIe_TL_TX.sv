@@ -46,61 +46,13 @@ module PCIE_TL_TX
     logic [PCIe_PKG::PCIe_TL_TLP_PACKET_SIZE-1:0]       vc0_fifo_wdata;                   // VC0 FIFO write data
     logic [PCIe_PKG::PCIe_TL_TLP_PACKET_SIZE-1:0]       vc1_fifo_wdata;                   // VC1 FIFO write data
 
-    // Sequential logic for state and TLP data update
-    always_ff @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
-            tlp_data        <= 128'd0;
-            tlp_header      <= 96'd0;
-            tlp             <= 224'd0;
-            tlp_valid       <= 1'b0;
-        end else begin
-            tlp_data        <= tlp_data_n;
-            tlp_header      <= tlp_header_n;
-            tlp             <= tlp_n;
-            tlp_valid       <= tlp_valid_n;
+    /* Fill the code here */
 
-            $display("TLP Header   : tlp_header = %0h", tlp_header);
-            $display("TLP Generated: tlp_valid = %0d, tlp = %0h", tlp_valid, tlp);
-            
-        end
-    end
 
-    // Combinational logic for TLP packing and FIFO write enable
-    always_comb begin
-        // Default values
-        tlp_data_n          = 'd0;
-        tlp_header_n        = 'd0;
-        tlp_n               = 'd0;
-        tlp_valid_n         = 1'b0;
-        vc0_fifo_wren       = 1'b0;
-        vc1_fifo_wren       = 1'b0;
 
-        aw_ch.awready         = 1'b1;
-        w_ch.wready          = 1'b1;
 
-        if (w_ch.wvalid && aw_ch.awvalid && fc_valid_i) begin
-            // TLP Header creation based on inputs
-            tlp_header_n    = tlp_hdr_arr_i;
-            // tlp_data_n      = (tlp_header.fmt == 3'b000) ? 128'd0 : w_ch.wdata; // Check for read or write request
 
-            // Combine header and data into one TLP packet
-            tlp_n           = {tlp_header, (tlp_header.fmt == 3'b000) ? 128'd0 : w_ch.wdata};
-            tlp_valid_n     = 1'b1;
-
-            // Write to appropriate FIFO based on TC value
-            if (tlp_header.tc[0] == 1'b0) begin
-                if (!vc0_fifo_full) begin
-                    vc0_fifo_wren   = 1'b1;
-                    vc0_fifo_wdata  = tlp;
-                end
-            end else begin
-                if (!vc1_fifo_full) begin
-                    vc1_fifo_wren   = 1'b1;
-                    vc1_fifo_wdata  = tlp;
-                end
-            end
-        end
-    end
+    
 
     // Instantiate VC0 FIFO
     PCIe_FIFO vc0 (

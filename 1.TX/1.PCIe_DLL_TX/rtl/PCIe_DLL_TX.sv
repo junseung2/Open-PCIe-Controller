@@ -51,91 +51,12 @@ module PCIE_DLL_TX
         .crc_o(crc)
     );
 
-    // Sequence number and CRC assignment, and Retry Buffer handling
-    always_ff @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
-            // Reset logic
-            seq_num                     <= 12'd0;
-            wr_ptr                      <= 12'd0;
-            rd_ptr                      <= 12'd0;
-            retry_empty                 <= 1'b1;
-            retry_full                  <= 1'b0;
-        end else begin
-            // Update sequence number, write/read pointers, and buffer flags
-            seq_num                     <= seq_num_n;
-            wr_ptr                      <= next_wr_ptr;
-            rd_ptr                      <= next_rd_ptr;
-            retry_empty                 <= next_retry_empty;
-            retry_full                  <= next_retry_full;
-        end
-    end
+    /* Fill the code here */
 
-    // Sequence number logic: update on valid TLP input
-    always_comb begin
-        if (dllp_valid_i && dllp_in.ack_or_nak == 8'h10) begin
-            seq_num_n                   = seq_num - 12'd1;
-        end
-        else if (tlp_valid_i && tlp_ready_o) begin
-            seq_num_n                   = (seq_num == 12'd4095) ? 12'd0 : seq_num + 12'd1;
-        end 
-        else begin
-            seq_num_n                   = seq_num;
-        end
-    end
 
-    always_comb begin
-    // Default values for next state logic
-    next_wr_ptr                         = wr_ptr;
-    next_rd_ptr                         = rd_ptr;
-    next_retry_empty                    = retry_empty;
-    next_retry_full                     = retry_full;
 
-    // Default values for TLP signals
-    tlp_o                               = 268'd0;
-    tlp_valid_o                         = 1'b0;
-    tlp_ready_o                         = !retry_full;
 
-    // DLLP Handling
-    if (dllp_valid_i) begin
-        if (dllp_in.ack_or_nak == 8'h00) begin // ACK
-            // Update read pointer based on ACKed sequence number
-            next_rd_ptr                 = dllp_in.seq_num + 12'd1;
-            if (next_rd_ptr == wr_ptr) begin
-                next_retry_empty        = 1'b1;
-            end
-            next_retry_full             = 1'b0;
 
-            // Store in retry buffer
-            retry_buffer[wr_ptr]        = {seq_num, tlp_i, crc};
-            
-            tlp_valid_o                 = 1'b1;
-            tlp_o                       = {seq_num, tlp_i, crc};
-            $display("Transmitting TLP: seq_num=%0d, tlp=%0h", seq_num, {seq_num, tlp_i, crc});
-
-        end else if (dllp_in.ack_or_nak == 8'h10) begin // NAK
-            // Retransmit TLP from retry buffer
-            tlp_o                       = retry_buffer[dllp_in.seq_num];
-            tlp_valid_o                 = 1'b1;
-            $display("NAK received: Retransmitting TLP seq_num=%0d, tlp=%0h", dllp_in.seq_num, retry_buffer[dllp_in.seq_num]);
-        end
-    end else begin
-        if (tlp_valid_i && tlp_ready_o && !tlp_blocking_i) begin
-            // Append sequence number and CRC to TLP
-
-            retry_buffer[wr_ptr]        = {seq_num, tlp_i, crc};    // Store in retry buffer
-            
-            tlp_valid_o                 = 1'b1;
-            tlp_o                       = {seq_num, tlp_i, crc};
-            $display("Transmitting TLP: seq_num=%0d, tlp=%0h", seq_num, {seq_num, tlp_i, crc});
-
-            // Update write pointer and buffer full/empty flags
-            next_wr_ptr                 = (wr_ptr == 12'd4095) ? 12'd0 : wr_ptr + 12'd1;
-            next_retry_empty            = 1'b0;
-            if ((wr_ptr == rd_ptr - 12'd1) || (wr_ptr == 12'd4095 && rd_ptr == 12'd0)) begin
-                next_retry_full         = 1'b1;
-            end
-        end
-    end
-    end
+    
 
 endmodule

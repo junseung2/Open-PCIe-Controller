@@ -49,91 +49,11 @@ module PCIE_DLL_RX
     );
 
 
-    // tlp handling logic
-    always_comb begin
-        tlp_ready_o         = 1'b1;
-        tlp_valid_o         = 1'b0;
-        tlp_o               = {PCIe_PKG::PCIe_TL_TLP_PACKET_SIZE{1'b0}};
-        dllp_o              = {PCIe_PKG::PCIe_DLLP_PACKET_SIZE{1'b0}};
-
-        if(tlp_valid_i && tlp_ready_o) begin
-            if(crc_valid) begin
-                if(expected_seq_num == tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:256]) begin
-                    expected_seq_num_n  = expected_seq_num + '1; 
-                    tlp_valid_o         = 1'b1;
-                    tlp_o               = tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:32];
-
-                    // Ack DLLP
-                    dllp_o.ack_or_nak   = 8'h00; 
-                    dllp_o.seq_num      = tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:256];
-                end
-                else begin
-                    // Nak DLLP
-                    dllp_o.ack_or_nak   = 8'h10;
-                    dllp_o.seq_num      = tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:256];
-                end
-            end
-            else begin
-                // Nak DLLP
-                dllp_o.ack_or_nak   = 8'h10;
-                dllp_o.seq_num      = tlp_i[PCIe_PKG::PCIe_DLL_TLP_PACKET_SIZE-1:256];
-            end
-        end
-    end
+    /* Fill the code here */
 
 
-    always_ff @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
-            // Reset logic
-            wr_ptr                      <= 12'd0;
-            rd_ptr                      <= 12'd0;
-            fc_empty                    <= 1'b1;
-            fc_full                     <= 1'b0;
-            expected_seq_num            <= 12'd0;
-        end else begin
-            // Update write/read pointers, and buffer flags
-            wr_ptr                      <= wr_ptr_n;
-            rd_ptr                      <= rd_ptr_n;
-            fc_empty                    <= fc_empty_n;
-            fc_full                     <= fc_full_n;
-            expected_seq_num            <= expected_seq_num_n;
-        end
-    end
 
-    // flow control handling logic
-    always_comb begin
-        // Default values for next state logic
-        wr_ptr_n                        = wr_ptr;
-        rd_ptr_n                        = rd_ptr;
-        fc_empty_n                      = fc_empty;
-        fc_full_n                       = fc_full;
 
-        dllp_fc_o                       = {PCIe_PKG::PCIe_DLLP_PACKET_SIZE{1'b0}};
-
-        // Write pointer update logic
-        if (tlp_valid_i && tlp_ready_o) begin
-            wr_ptr_n                    = wr_ptr + 12'd1;
-        end
-
-        // Read pointer update logic
-        if (tlp_valid_o && tlp_ready_i) begin
-            rd_ptr_n                    = rd_ptr + 12'd1;
-        end
-
-        // Update empty/full flags
-        if (wr_ptr == rd_ptr) begin
-            fc_empty_n                  = 1'b0;
-        end
-        if (wr_ptr - rd_ptr == 12'd4095) begin
-            fc_full_n                   = 1'b1;
-        end
-
-        // DLLP Flow Control Packet Generation
-        if (fc_full) begin
-            dllp_fc_o.data_fc           = 12'd0;
-        end else begin
-            dllp_fc_o.data_fc           = wr_ptr - rd_ptr;
-        end
-    end
+    
 
 endmodule
