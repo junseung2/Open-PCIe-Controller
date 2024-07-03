@@ -23,7 +23,7 @@ Conversely, in the receiver (Rx), a series of processes are carried out to unpac
 ECRC is optional, so it was not included. While the data payload size can range from 0 to 4096 bytes, in this project it is fixed at 16 bytes.
 
 <p align="center">
-  <img src="./images/image-1.png" alt="TLP Structure" width="400">
+  <img src="./images/image-tlp.png" alt="TLP Structure" width="400">
 </p>
 
 ---
